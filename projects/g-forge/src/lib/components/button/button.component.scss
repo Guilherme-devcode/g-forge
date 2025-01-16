@@ -1,0 +1,106 @@
+@import "../../../styles/variables";
+@import "../../../styles/styles";
+
+// Estilos básicos
+.gforge-button {
+  font-family: $font-family;
+  border: none;
+  border-radius: 4px;
+  height: 48px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  position: relative; // Necessário para conter o efeito
+  overflow: hidden; // Evita que o efeito ultrapasse os limites do botão
+
+  &:active {
+    transform: scale(0.98); // Adiciona um leve efeito de "pressionar"
+  }
+
+  &:focus-visible {
+    outline: 2px solid lighten($primary-color, 30%);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Elemento para o efeito de clique
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5); // Cor do efeito
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  }
+
+  // Efeito ao clicar
+  &:active::after {
+    width: 200%;
+    height: 200%;
+    opacity: 0.2;
+  }
+}
+
+// Variantes
+.gforge-button--primary {
+  background-color: $primary-color;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Adiciona sombra no hover
+  }
+}
+
+.gforge-button--secondary {
+  border-radius: 4px;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  border: 1px solid $primary-color;
+  background: none;
+  color: $primary-color;
+
+  &:hover:not(:disabled) {
+    color: white;
+    background-color: lighten($secondary-color, 30%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Adiciona sombra no hover
+  }
+}
+
+.gforge-button--danger {
+  background-color: $danger-color;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: darken($danger-color, 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Adiciona sombra no hover
+  }
+}
+
+// Tamanhos
+.gforge-button--small {
+  padding: 0.25rem 0.5rem;
+}
+
+.gforge-button--medium {
+  padding: 0.5rem 1rem;
+}
+
+.gforge-button--large {
+  padding: 0.75rem 1.5rem;
+}
