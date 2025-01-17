@@ -71,6 +71,16 @@
                 "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Este campo está desabilitado',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: true,\r\n  },\r\n}"
             },
             {
+                "name": "Invalid",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Campo inválido',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n    isInvalid: true,\r\n  },\r\n}"
+            },
+            {
                 "name": "Password",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -155,6 +165,16 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Este campo está desabilitado',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: true,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Invalid",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Campo inválido',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n    isInvalid: true,\r\n  },\r\n}"
                 },
                 {
                     "name": "Password",
@@ -317,6 +337,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Invalid",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

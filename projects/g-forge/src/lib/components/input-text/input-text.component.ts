@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
 })
-export class InputTextComponent implements OnChanges {
+export class InputTextComponent implements OnChanges, OnInit {
   /** Texto placeholder do input */
   @Input() placeholder: string = 'Digite algo';
 
@@ -35,7 +36,10 @@ export class InputTextComponent implements OnChanges {
   @Input() currencyType: 'BRL' | 'USD' = 'BRL'; // Valor padrão é 'BRL' (Real)
 
   /** Limitador de caracteres */
-  @Input() maxLength: number | null = null; // Novo input para limite de caracteres
+  @Input() maxLength: number | null = null;
+
+  // Variável que controla se o campo é inválido
+  @Input() isInvalid: boolean = false;
 
   /** Evento emitido ao digitar no input */
   @Output() valueChanged = new EventEmitter<string>();
@@ -45,6 +49,8 @@ export class InputTextComponent implements OnChanges {
 
   /** Evento emitido ao perder o foco do input */
   @Output() blurred = new EventEmitter<void>();
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     // Quando o valor de 'value' ou 'mask' for alterado, aplicar a máscara
@@ -69,6 +75,7 @@ export class InputTextComponent implements OnChanges {
     this.value = value;
     this.valueChanged.emit(value);
   }
+
 
   /** Ação ao focar no input */
   onFocus(): void {

@@ -7,6 +7,7 @@
   (focus)="onFocus()"
   (blur)="onBlur()"
   class="gforge-input"
+  [ngClass]="{ invalid: isInvalid }"
   [maxlength]="maxLength || (mask === 'cpf' ? 14 : null)"
   [attr.inputmode]="'numeric'"
   pattern="[0-9]*"

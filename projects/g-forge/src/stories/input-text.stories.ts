@@ -68,6 +68,18 @@ export const CPF = {
   },
 };
 
+export const Invalid = {
+  args: {
+    placeholder: 'Campo inválido',
+    value: '',
+    type: 'text',
+    mask: null,
+    maxLength: 20,
+    disabled: false,
+    isInvalid: true,
+  },
+};
+
 export const Currency = {
   args: {
     placeholder: 'Digite um valor em Reais',
