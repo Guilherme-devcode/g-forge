@@ -1,0 +1,13 @@
+<input
+  [type]="type"
+  [(ngModel)]="value"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  (input)="onInput($event)"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  class="gforge-input"
+  [maxlength]="maxLength || (mask === 'cpf' ? 14 : null)"
+  [attr.inputmode]="'numeric'"
+  pattern="[0-9]*"
+/>

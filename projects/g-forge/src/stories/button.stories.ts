@@ -17,11 +17,11 @@ export default {
 } as Meta<ButtonComponent>;
 
 export const Primary = {
-  args: {
-    label: 'Primary',
-    variant: 'secondary',
-    size: 'small',
-    disabled: false,
+  args:{
+    label:"Primary Button",
+    variant:"primary",
+    size:'large',
+    disabled:false,
   },
 };
 
@@ -34,11 +34,20 @@ export const Secondary = {
   },
 };
 
+export const Danger = {
+  args: {
+    label: 'Danger Button',
+    variant: 'danger',
+    size: 'large',
+    disabled: false,
+  },
+};
+
 export const Disabled = {
   args: {
     label: 'Disabled Button',
     variant: 'primary',
-    size: 'medium',
+    size: 'large',
     disabled: true,
   },
 };

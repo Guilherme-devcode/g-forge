@@ -11,6 +11,46 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "CPF",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite seu CPF',\r\n    value: '12345678900',\r\n    type: 'text',\r\n    mask: 'cpf',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Currency",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite um valor em Reais',\r\n    value: '1234567',\r\n    type: 'text',\r\n    mask: 'currency',\r\n    currencyType: 'USD',\r\n    disabled: false,\r\n    maxLength: 20,\r\n  },\r\n}"
+            },
+            {
+                "name": "Danger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Danger Button',\r\n    variant: 'danger',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite algo',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -18,7 +58,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Disabled Button',\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: true,\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Disabled Button',\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: true,\r\n  },\r\n}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Este campo está desabilitado',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: true,\r\n  },\r\n}"
+            },
+            {
+                "name": "Password",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite sua senha',\r\n    value: '',\r\n    type: 'password',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
             },
             {
                 "name": "preview",
@@ -38,7 +98,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary',\r\n    variant: 'secondary',\r\n    size: 'small',\r\n    disabled: false,\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args:{\r\n    label:\"Primary Button\",\r\n    variant:\"primary\",\r\n    size:'large',\r\n    disabled:false,\r\n  },\r\n}"
             },
             {
                 "name": "Secondary",
@@ -55,7 +115,69 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "projects/g-forge/src/stories/input-text.stories.ts": [
+                {
+                    "name": "CPF",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite seu CPF',\r\n    value: '12345678900',\r\n    type: 'text',\r\n    mask: 'cpf',\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Currency",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite um valor em Reais',\r\n    value: '1234567',\r\n    type: 'text',\r\n    mask: 'currency',\r\n    currencyType: 'USD',\r\n    disabled: false,\r\n    maxLength: 20,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite algo',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Este campo está desabilitado',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: true,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Password",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/input-text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite sua senha',\r\n    value: '',\r\n    type: 'password',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
+                }
+            ],
             "projects/g-forge/src/stories/button.stories.ts": [
+                {
+                    "name": "Danger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Danger Button',\r\n    variant: 'danger',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+                },
                 {
                     "name": "Disabled",
                     "ctype": "miscellaneous",
@@ -64,7 +186,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Disabled Button',\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: true,\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Disabled Button',\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: true,\r\n  },\r\n}"
                 },
                 {
                     "name": "Primary",
@@ -74,7 +196,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary',\r\n    variant: 'secondary',\r\n    size: 'small',\r\n    disabled: false,\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args:{\r\n    label:\"Primary Button\",\r\n    variant:\"primary\",\r\n    size:'large',\r\n    disabled:false,\r\n  },\r\n}"
                 },
                 {
                     "name": "Secondary",
@@ -124,6 +246,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "Danger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Disabled",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -145,6 +277,56 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CPF",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Currency",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Password",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
