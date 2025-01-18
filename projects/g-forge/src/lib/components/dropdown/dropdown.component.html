@@ -1,0 +1,21 @@
+<div class="gforge-dropdown" [class.open]="isOpen">
+  <gforge-button
+    [variant]="variant"
+    [size]="size"
+    [disabled]="disabled"
+    (click)="toggleDropdown($event)"
+  >
+    <span class="icon" [class.open]="isOpen"
+      >{{ selectedOption?.label || label }} {{ isOpen ? "▲" : "▼" }}</span
+    >
+  </gforge-button>
+  <ul class="gforge-dropdown-menu" *ngIf="isOpen">
+    <li
+      *ngFor="let option of options"
+      class="gforge-dropdown-item"
+      (click)="selectOption(option)"
+    >
+      {{ option.label }}
+    </li>
+  </ul>
+</div>

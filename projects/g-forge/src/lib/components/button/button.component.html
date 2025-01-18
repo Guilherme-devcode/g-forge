@@ -1,3 +1,6 @@
 <button [class]="buttonClass" [disabled]="disabled" (click)="onClick($event)">
-  {{ label }}
+  <ng-container *ngIf="label; else htmlContent">{{ label }}</ng-container>
+  <ng-template #htmlContent>
+    <ng-content></ng-content>
+  </ng-template>
 </button>

@@ -1,13 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'gforge-button',
+  imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  /** Texto do botão */
-  @Input() label: string = 'Button';
+  /** Texto do botão (simples) */
+  @Input() label: string | null = null;
 
   /** Variantes do botão */
   @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';

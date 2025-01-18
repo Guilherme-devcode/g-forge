@@ -4,6 +4,7 @@ import { ButtonComponent } from '../lib/components/button/button.component';
 export default {
   title: 'G-Forge/Button',
   component: ButtonComponent,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
@@ -17,11 +18,11 @@ export default {
 } as Meta<ButtonComponent>;
 
 export const Primary = {
-  args:{
-    label:"Primary Button",
-    variant:"primary",
-    size:'large',
-    disabled:false,
+  args: {
+    label: 'Primary Button',
+    variant: 'primary',
+    size: 'large',
+    disabled: false,
   },
 };
 

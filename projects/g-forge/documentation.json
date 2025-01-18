@@ -41,6 +41,26 @@
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Danger Button',\r\n    variant: 'danger',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
             },
             {
+                "name": "Danger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Perigoso',\r\n    options: dropdownOptions,\r\n    variant: 'danger',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -64,11 +84,61 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Desabilitado',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: true,\r\n  },\r\n}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/g-forge/src/stories/input-text.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Este campo está desabilitado',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: true,\r\n  },\r\n}"
+            },
+            {
+                "name": "dropdownOptions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "DropdownOption[]",
+                "defaultValue": "[\r\n  { label: 'Opção 1', value: 1 },\r\n  { label: 'Opção 2', value: 2 },\r\n  { label: 'Opção 3', value: 3 },\r\n]"
+            },
+            {
+                "name": "Dynamic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "Error",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "Info",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Invalid",
@@ -79,6 +149,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Campo inválido',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n    isInvalid: true,\r\n  },\r\n}"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Grande',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
             },
             {
                 "name": "Password",
@@ -108,7 +188,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  args:{\r\n    label:\"Primary Button\",\r\n    variant:\"primary\",\r\n    size:'large',\r\n    disabled:false,\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button',\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
             },
             {
                 "name": "Secondary",
@@ -119,6 +199,56 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Secondary Button',\r\n    variant: 'secondary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Secundário',\r\n    options: dropdownOptions,\r\n    variant: 'secondary',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Pequeno',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'small',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Success",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+            },
+            {
+                "name": "toastService",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new ToastService()"
+            },
+            {
+                "name": "Warning",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             }
         ],
         "functions": [],
@@ -216,7 +346,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  args:{\r\n    label:\"Primary Button\",\r\n    variant:\"primary\",\r\n    size:'large',\r\n    disabled:false,\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button',\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
                 },
                 {
                     "name": "Secondary",
@@ -227,6 +357,140 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  args: {\r\n    label: 'Secondary Button',\r\n    variant: 'secondary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+                }
+            ],
+            "projects/g-forge/src/stories/dropdown.stories.ts": [
+                {
+                    "name": "Danger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Perigoso',\r\n    options: dropdownOptions,\r\n    variant: 'danger',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Desabilitado',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'medium',\r\n    disabled: true,\r\n  },\r\n}"
+                },
+                {
+                    "name": "dropdownOptions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DropdownOption[]",
+                    "defaultValue": "[\r\n  { label: 'Opção 1', value: 1 },\r\n  { label: 'Opção 2', value: 2 },\r\n  { label: 'Opção 3', value: 3 },\r\n]"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Grande',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Secundário',\r\n    options: dropdownOptions,\r\n    variant: 'secondary',\r\n    size: 'medium',\r\n    disabled: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/dropdown.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Pequeno',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'small',\r\n    disabled: false,\r\n  },\r\n}"
+                }
+            ],
+            "projects/g-forge/src/stories/toast.stories.ts": [
+                {
+                    "name": "Dynamic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Error",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Info",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                },
+                {
+                    "name": "Success",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                },
+                {
+                    "name": "toastService",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new ToastService()"
+                },
+                {
+                    "name": "Warning",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 }
             ],
             "projects/g-forge/.storybook/preview.ts": [
@@ -302,6 +566,76 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Danger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dropdownOptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/dropdown.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/g-forge/src/stories/input-text.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -357,6 +691,66 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Password",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Dynamic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Error",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Info",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Success",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "toastService",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Warning",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

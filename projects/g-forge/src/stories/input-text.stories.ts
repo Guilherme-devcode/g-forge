@@ -4,6 +4,7 @@ import { InputTextComponent } from '../lib/components/input-text/input-text.comp
 export default {
   title: 'G-Forge/Input',
   component: InputTextComponent,
+  tags: ['autodocs'],
   argTypes: {
     type: {
       control: 'select',
