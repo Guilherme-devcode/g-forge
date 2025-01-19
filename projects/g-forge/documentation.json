@@ -118,7 +118,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      message: 'Este é um toast dinâmico.',\r\n      duration: 3000,\r\n      position: 'top-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Error",
@@ -128,7 +128,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'error',\r\n      message: 'Ocorreu um erro inesperado.',\r\n      title: 'Erro',\r\n      duration: 3000,\r\n      position: 'top-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Info",
@@ -138,7 +138,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'info',\r\n      message: 'Aqui está uma informação importante.',\r\n      title: 'Informação',\r\n      duration: 3000,\r\n      position: 'bottom-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Invalid",
@@ -228,17 +228,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
-            },
-            {
-                "name": "toastService",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/g-forge/src/stories/toast.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "new ToastService()"
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'success',\r\n      message: 'Operação realizada com sucesso!',\r\n      title: 'Sucesso',\r\n      duration: 3000,\r\n      position: 'top-right',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
                 "name": "Warning",
@@ -248,7 +238,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'warning',\r\n      message: 'Atenção! Verifique os detalhes.',\r\n      title: 'Aviso',\r\n      duration: 3000,\r\n      position: 'bottom-right',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             }
         ],
         "functions": [],
@@ -440,7 +430,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      message: 'Este é um toast dinâmico.',\r\n      duration: 3000,\r\n      position: 'top-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 },
                 {
                     "name": "Error",
@@ -450,7 +440,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'error',\r\n      message: 'Ocorreu um erro inesperado.',\r\n      title: 'Erro',\r\n      duration: 3000,\r\n      position: 'top-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 },
                 {
                     "name": "Info",
@@ -460,7 +450,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'info',\r\n      message: 'Aqui está uma informação importante.',\r\n      title: 'Informação',\r\n      duration: 3000,\r\n      position: 'bottom-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 },
                 {
                     "name": "Success",
@@ -470,17 +460,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
-                },
-                {
-                    "name": "toastService",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/g-forge/src/stories/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "new ToastService()"
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'success',\r\n      message: 'Operação realizada com sucesso!',\r\n      title: 'Sucesso',\r\n      duration: 3000,\r\n      position: 'top-right',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 },
                 {
                     "name": "Warning",
@@ -490,7 +470,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
+                    "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'warning',\r\n      message: 'Atenção! Verifique os detalhes.',\r\n      title: 'Aviso',\r\n      duration: 3000,\r\n      position: 'bottom-right',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
                 }
             ],
             "projects/g-forge/.storybook/preview.ts": [
@@ -731,16 +711,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Success",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/g-forge/src/stories/toast.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "toastService",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
