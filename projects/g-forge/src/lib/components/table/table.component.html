@@ -1,4 +1,7 @@
-<div class="gforge-table-container">
+<div
+  class="gforge-table-container"
+  (click)="contextMenu.length > 0 && onOutsideClick()"
+>
   <!-- Busca -->
   <div *ngIf="searchable" class="gforge-search">
     <gforge-input-text
@@ -23,12 +26,21 @@
             {{ column.header }}
             <span *ngIf="column.sortable" class="sort-icon">⇅</span>
           </th>
+          <th *ngIf="showActionsColumn">{{ actionsLabel }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of paginatedData">
+        <tr
+          (contextmenu)="contextMenu.length > 0 && onRightClick($event, row)"
+          *ngFor="let row of paginatedData"
+        >
           <td *ngFor="let column of columns">
             {{ row[column.field] }}
+          </td>
+          <td *ngIf="showActionsColumn">
+            <button type="button" (click)="onActionMenuClick($event, row)">
+              ⋮
+            </button>
           </td>
         </tr>
       </tbody>
@@ -43,5 +55,20 @@
       [variant]="currentPage === page ? 'primary' : 'secondary'"
       (clicked)="currentPage = page"
     ></gforge-button>
+  </div>
+
+  <div
+    *ngIf="showContextMenu"
+    class="context-menu"
+    [style.left.px]="menuPosition.x"
+    [style.top.px]="menuPosition.y"
+  >
+    <button
+      *ngFor="let menuItem of contextMenu"
+      (click)="onMenuItemClick(menuItem)"
+    >
+      <span *ngIf="menuItem.symbol">{{ menuItem.symbol }}</span>
+      {{ menuItem.name }}
+    </button>
   </div>
 </div>

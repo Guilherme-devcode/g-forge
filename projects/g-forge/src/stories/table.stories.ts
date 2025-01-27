@@ -29,6 +29,17 @@ export default {
       control: 'boolean',
       description: 'Habilitar cabeçalho fixo',
     },
+    showActionsColumn: {
+      control: 'boolean',
+      description: 'Habilitar ação',
+    },
+    contextMenu: {
+      description: 'Itens do menu contextual',
+    },
+    menuClicked: {
+      action: 'menuClicked',
+      description: 'Evento disparado ao clicar em um item do menu contextual',
+    },
   },
 } as Meta<TableComponent>;
 
@@ -48,6 +59,50 @@ export const Default = {
     itemsPerPage: 5,
     searchable: true,
     searchPlaceholder: 'Search by any field...',
+  },
+};
+
+// Cenário com menu contextual
+export const ContextMenu = {
+  args: {
+    data: [
+      { id: 1, name: 'John Doe', age: 25 },
+      { id: 2, name: 'Jane Smith', age: 30 },
+      { id: 3, name: 'Alice Johnson', age: 28 },
+      { id: 4, name: 'Robert Brown', age: 35 },
+    ],
+    columns: [
+      { field: 'id', header: 'ID' },
+      { field: 'name', header: 'Name' },
+      { field: 'age', header: 'Age' },
+    ],
+    contextMenu: [
+      { id: 'edit', name: 'Edit', symbol: '✏️' },
+      { id: 'delete', name: 'Delete', symbol: '🗑️' },
+    ],
+  },
+};
+
+export const ActionsColumn = {
+  args: {
+    data: [
+      { id: 1, name: 'John Doe', age: 25 },
+      { id: 2, name: 'Jane Smith', age: 30 },
+      { id: 3, name: 'Alice Johnson', age: 28 },
+    ],
+    columns: [
+      { field: 'id', header: 'ID' },
+      { field: 'name', header: 'Name' },
+      { field: 'age', header: 'Age' },
+    ],
+    showActionsColumn: true,
+    contextMenu: [
+      { id: 'view', name: 'View', symbol: '🔍' },
+      { id: 'edit', name: 'Edit', symbol: '✏️' },
+      { id: 'delete', name: 'Delete', symbol: '🗑️' },
+    ],
+    menuClicked: (event: { menuItem: any; rowData: any }) =>
+      console.log('Menu Item:', event.menuItem, 'Row Data:', event.rowData),
   },
 };
 
