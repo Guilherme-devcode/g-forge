@@ -28,6 +28,17 @@
   .gforge-table {
     position: relative;
 
+    button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
     table {
       width: 100%;
       border-collapse: collapse; /* Certifica-se de que a tabela esteja compacta */
@@ -113,6 +124,32 @@
         color: #fff;
         border-color: $primary-color;
       }
+    }
+  }
+}
+
+.context-menu {
+  position: fixed; /* Garante que seja posicionado na tela */
+  z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+
+    &:hover {
+      background-color: #f0f0f0;
     }
   }
 }

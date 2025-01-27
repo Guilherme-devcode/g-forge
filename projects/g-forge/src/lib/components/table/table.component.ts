@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
 import { InputTextComponent } from '../input-text/input-text.component';
@@ -36,6 +43,8 @@ export class TableComponent implements OnInit {
   /** Habilitar scroll infinito */
   @Input() infiniteScroll: boolean = false;
 
+  @Input() contextMenu: { id: string; name: string; symbol?: string }[] = [];
+
   /** Evento disparado ao atingir o final do scroll */
   @Output() scrolled = new EventEmitter<void>();
 
@@ -54,11 +63,26 @@ export class TableComponent implements OnInit {
     order: 'asc' | 'desc';
   }>();
 
+  @Output() menuClicked = new EventEmitter<{ menuItem: any; rowData: any }>();
+
+  /** Exibir coluna de ações */
+  @Input() showActionsColumn: boolean = false;
+
+  /** Nome coluna de ações */
+  @Input() actionsLabel: string = 'Actions';
+
   /** Dados filtrados */
   filteredData: any[] = [];
 
   /** Termo de busca */
   searchTerm: string = '';
+
+  // Controle do menu contextual
+  menuPosition = { x: 0, y: 0 };
+  showContextMenu = false;
+  selectedRow: any;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.filteredData = [...this.data];
@@ -75,6 +99,35 @@ export class TableComponent implements OnInit {
       )
     );
     this.searched.emit(this.searchTerm);
+  }
+
+  onRightClick(event: MouseEvent, row: any): void {
+    event.preventDefault(); // Previne o menu padrão do navegador
+    this.menuPosition = { x: event.clientX, y: event.clientY };
+    this.showContextMenu = true;
+    this.selectedRow = row;
+    this.cdr.detectChanges(); // Atualiza mudanças ao fechar o menu
+  }
+
+  onActionMenuClick(event: MouseEvent, row: any): void {
+    event.preventDefault(); // Previne comportamentos padrão
+    event.stopPropagation(); // Previne comportamentos padrão
+    this.menuPosition = {
+      x: event.clientX, // Obtém a posição X do clique
+      y: event.clientY, // Obtém a posição Y do clique
+    };
+    this.showContextMenu = true; // Ativa o menu contextual
+    this.selectedRow = row; // Armazena a linha selecionada
+    this.cdr.detectChanges(); // Atualiza mudanças ao fechar o menu
+    }
+
+  onMenuItemClick(menuItem: any): void {
+    this.menuClicked.emit({ menuItem, rowData: this.selectedRow });
+    this.showContextMenu = false;
+  }
+
+  onOutsideClick(): void {
+    this.showContextMenu = false; // Fecha o menu ao clicar fora
   }
 
   /** Ordena a tabela */
