@@ -81,6 +81,7 @@ export class TableComponent implements OnInit {
   menuPosition = { x: 0, y: 0 };
   showContextMenu = false;
   selectedRow: any;
+  itemsPerPageOptions: number[] = [5, 10, 20, 50]; // Opções disponíveis para o seletor
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -119,7 +120,7 @@ export class TableComponent implements OnInit {
     this.showContextMenu = true; // Ativa o menu contextual
     this.selectedRow = row; // Armazena a linha selecionada
     this.cdr.detectChanges(); // Atualiza mudanças ao fechar o menu
-    }
+  }
 
   onMenuItemClick(menuItem: any): void {
     this.menuClicked.emit({ menuItem, rowData: this.selectedRow });
@@ -167,6 +168,24 @@ export class TableComponent implements OnInit {
     });
 
     this.sorted.emit({ field: column.field, order });
+  }
+
+  onItemsPerPageChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.itemsPerPage = parseInt(selectElement.value, 10); // Atualiza itens por página
+    this.currentPage = 1; // Reseta para a primeira página
+  }
+
+  goToPreviousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  goToNextPage(): void {
+    if (this.currentPage < this.totalPages.length) {
+      this.currentPage++;
+    }
   }
 
   /** Evento de scroll */
