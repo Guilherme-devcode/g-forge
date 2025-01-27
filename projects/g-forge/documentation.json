@@ -31,6 +31,16 @@
                 "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite um valor em Reais',\r\n    value: '1234567',\r\n    type: 'text',\r\n    mask: 'currency',\r\n    currencyType: 'USD',\r\n    disabled: false,\r\n    maxLength: 20,\r\n  },\r\n}"
             },
             {
+                "name": "CustomPagination",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    data: Array.from({ length: 20 }, (_, i) => ({\r\n      id: i + 1,\r\n      name: `User ${i + 1}`,\r\n      age: Math.floor(Math.random() * 50) + 20,\r\n    })),\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: true,\r\n    itemsPerPage: 3,\r\n  },\r\n}"
+            },
+            {
                 "name": "Danger",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -69,6 +79,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite algo',\r\n    value: '',\r\n    type: 'text',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID', sortable: true },\r\n      { field: 'name', header: 'Name', sortable: true },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: true,\r\n    itemsPerPage: 5,\r\n    searchable: true,\r\n    searchPlaceholder: 'Search by any field...',\r\n  },\r\n}"
             },
             {
                 "name": "Disabled",
@@ -131,6 +151,16 @@
                 "defaultValue": "{\r\n  render: () => ({\r\n    component: ToastWrapperComponent,\r\n    props: {\r\n      type: 'error',\r\n      message: 'Ocorreu um erro inesperado.',\r\n      title: 'Erro',\r\n      duration: 3000,\r\n      position: 'top-left',\r\n    },\r\n    moduleMetadata: {\r\n      providers: [ToastService],\r\n    },\r\n  }),\r\n}"
             },
             {
+                "name": "InfiniteScroll",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    data: Array.from({ length: 50 }, (_, i) => ({\r\n      id: i + 1,\r\n      name: `User ${i + 1}`,\r\n      age: Math.floor(Math.random() * 50) + 20,\r\n    })),\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    infiniteScroll: true,\r\n    searchable: false,\r\n  },\r\n}"
+            },
+            {
                 "name": "Info",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -161,6 +191,16 @@
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Dropdown Grande',\r\n    options: dropdownOptions,\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
             },
             {
+                "name": "NoPaginationNoSearch",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n      { id: 3, name: 'Alice Johnson', age: 28 },\r\n      { id: 4, name: 'Robert Brown', age: 35 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: false,\r\n    searchable: false,\r\n  },\r\n}"
+            },
+            {
                 "name": "Password",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -189,6 +229,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  args: {\r\n    label: 'Primary Button',\r\n    variant: 'primary',\r\n    size: 'large',\r\n    disabled: false,\r\n  },\r\n}"
+            },
+            {
+                "name": "SearchOnly",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/g-forge/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n      { id: 3, name: 'Alice Johnson', age: 28 },\r\n      { id: 4, name: 'Robert Brown', age: 35 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    searchable: true,\r\n    searchPlaceholder: 'Search by name...',\r\n  },\r\n}"
             },
             {
                 "name": "Secondary",
@@ -305,6 +355,58 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  args: {\r\n    placeholder: 'Digite sua senha',\r\n    value: '',\r\n    type: 'password',\r\n    mask: null,\r\n    maxLength: 20,\r\n    disabled: false,\r\n  },\r\n}"
+                }
+            ],
+            "projects/g-forge/src/stories/table.stories.ts": [
+                {
+                    "name": "CustomPagination",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    data: Array.from({ length: 20 }, (_, i) => ({\r\n      id: i + 1,\r\n      name: `User ${i + 1}`,\r\n      age: Math.floor(Math.random() * 50) + 20,\r\n    })),\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: true,\r\n    itemsPerPage: 3,\r\n  },\r\n}"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID', sortable: true },\r\n      { field: 'name', header: 'Name', sortable: true },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: true,\r\n    itemsPerPage: 5,\r\n    searchable: true,\r\n    searchPlaceholder: 'Search by any field...',\r\n  },\r\n}"
+                },
+                {
+                    "name": "InfiniteScroll",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    data: Array.from({ length: 50 }, (_, i) => ({\r\n      id: i + 1,\r\n      name: `User ${i + 1}`,\r\n      age: Math.floor(Math.random() * 50) + 20,\r\n    })),\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    infiniteScroll: true,\r\n    searchable: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "NoPaginationNoSearch",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n      { id: 3, name: 'Alice Johnson', age: 28 },\r\n      { id: 4, name: 'Robert Brown', age: 35 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    pagination: false,\r\n    searchable: false,\r\n  },\r\n}"
+                },
+                {
+                    "name": "SearchOnly",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/g-forge/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  args: {\r\n    data: [\r\n      { id: 1, name: 'John Doe', age: 25 },\r\n      { id: 2, name: 'Jane Smith', age: 30 },\r\n      { id: 3, name: 'Alice Johnson', age: 28 },\r\n      { id: 4, name: 'Robert Brown', age: 35 },\r\n    ],\r\n    columns: [\r\n      { field: 'id', header: 'ID' },\r\n      { field: 'name', header: 'Name' },\r\n      { field: 'age', header: 'Age' },\r\n    ],\r\n    searchable: true,\r\n    searchPlaceholder: 'Search by name...',\r\n  },\r\n}"
                 }
             ],
             "projects/g-forge/src/stories/button.stories.ts": [
@@ -671,6 +773,56 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Password",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomPagination",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InfiniteScroll",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoPaginationNoSearch",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/g-forge/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SearchOnly",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

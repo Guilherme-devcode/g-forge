@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run g-forge:storybook",
-    "build-storybook": "ng run g-forge:build-storybook"
+    "build-storybook": "ng run g-forge:build-storybook",
+    "chromatic": "npx chromatic --project-token=chpt_14cab88efaf06fc"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "@storybook/blocks": "^8.5.0",
     "@storybook/test": "^8.5.0",
     "@types/jasmine": "~5.1.0",
+    "chromatic": "^11.25.0",
     "css-loader": "^7.1.2",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",

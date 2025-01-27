@@ -1,0 +1,47 @@
+<div class="gforge-table-container">
+  <!-- Busca -->
+  <div *ngIf="searchable" class="gforge-search">
+    <gforge-input-text
+      [placeholder]="searchPlaceholder"
+      [value]="searchTerm"
+      (valueChanged)="onSearch($event)"
+    ></gforge-input-text>
+  </div>
+
+  <!-- Tabela -->
+  <div
+    class="gforge-table"
+    [class.scrollable]="infiniteScroll || fixedHeader"
+    [class.fixed-header]="fixedHeader"
+    [class.non-fixed-header]="!fixedHeader"
+    (scroll)="(infiniteScroll || fixedHeader) && onScroll($event)"
+  >
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns" (click)="onSort(column)">
+            {{ column.header }}
+            <span *ngIf="column.sortable" class="sort-icon">⇅</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of paginatedData">
+          <td *ngFor="let column of columns">
+            {{ row[column.field] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Paginação -->
+  <div *ngIf="pagination" class="gforge-pagination">
+    <gforge-button
+      *ngFor="let page of totalPages"
+      [label]="page.toString()"
+      [variant]="currentPage === page ? 'primary' : 'secondary'"
+      (clicked)="currentPage = page"
+    ></gforge-button>
+  </div>
+</div>
