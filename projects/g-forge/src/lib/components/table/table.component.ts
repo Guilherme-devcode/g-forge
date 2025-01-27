@@ -9,11 +9,21 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
+import {
+  DropdownComponent,
+  DropdownOption,
+} from '../dropdown/dropdown.component';
 import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
   selector: 'gforge-table',
-  imports: [CommonModule, FormsModule, InputTextComponent, ButtonComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputTextComponent,
+    ButtonComponent,
+    DropdownComponent,
+  ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
@@ -81,7 +91,12 @@ export class TableComponent implements OnInit {
   menuPosition = { x: 0, y: 0 };
   showContextMenu = false;
   selectedRow: any;
-  itemsPerPageOptions: number[] = [5, 10, 20, 50]; // Opções disponíveis para o seletor
+  itemsPerPageDropdownOptions: DropdownOption[] = [
+    { label: '5', value: 5 },
+    { label: '10', value: 10 },
+    { label: '20', value: 20 },
+    { label: '50', value: 50 },
+  ];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -170,9 +185,8 @@ export class TableComponent implements OnInit {
     this.sorted.emit({ field: column.field, order });
   }
 
-  onItemsPerPageChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.itemsPerPage = parseInt(selectElement.value, 10); // Atualiza itens por página
+  onItemsPerPageChange(option: DropdownOption): void {
+    this.itemsPerPage = option.value; // Atualiza itens por página
     this.currentPage = 1; // Reseta para a primeira página
   }
 

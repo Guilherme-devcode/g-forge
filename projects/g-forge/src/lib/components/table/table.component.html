@@ -72,12 +72,15 @@
 
     <!-- Dropdown para Itens por Página -->
     <div class="items-per-page">
-      <label for="itemsPerPage">Itens por página:</label>
-      <select id="itemsPerPage" (change)="onItemsPerPageChange($event)">
-        <option *ngFor="let option of itemsPerPageOptions" [value]="option">
-          {{ option }}
-        </option>
-      </select>
+      <div class="items-per-page">
+        <gforge-dropdown
+          [label]="itemsPerPage.toString()"
+          [options]="itemsPerPageDropdownOptions"
+          [variant]="'primary'"
+          [size]="'small'"
+          (selected)="onItemsPerPageChange($event)"
+        ></gforge-dropdown>
+      </div>
     </div>
   </div>
 
