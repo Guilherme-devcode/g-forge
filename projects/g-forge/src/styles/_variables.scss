@@ -8,3 +8,15 @@ $font-color: #1a535c;
 $success-color: #28a745;
 $border-color: #d1d1d1;
 $font-family: "Open Sans", sans-serif;
+
+// Table
+$table-primary-color: #3498db;
+$table-secondary-color: #2ecc71;
+$table-hover-color: #dff9fb;
+$table-border-color: #bdc3c7;
+$table-header-font-color: #ffffff;
+$table-odd-row-bg: #f8f9fa;
+$table-even-row-bg: #ecf0f1;
+$table-font-color: #2d3436;
+$table-hover-font-color: #2980b9;
+$table-header-bg: darken($table-primary-color, 10%);

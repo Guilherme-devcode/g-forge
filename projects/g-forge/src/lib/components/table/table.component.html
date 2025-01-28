@@ -26,7 +26,9 @@
             {{ column.header }}
             <span *ngIf="column.sortable" class="sort-icon">⇅</span>
           </th>
-          <th *ngIf="showActionsColumn">{{ actionsLabel }}</th>
+          <th *ngIf="showActionsColumn" class="actions-column">
+            {{ actionsLabel }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -37,9 +39,13 @@
           <td *ngFor="let column of columns">
             {{ row[column.field] }}
           </td>
-          <td *ngIf="showActionsColumn">
-            <button type="button" (click)="onActionMenuClick($event, row)">
-              ⋮
+          <td *ngIf="showActionsColumn" class="actions-column">
+            <button
+              type="button"
+              class="action-button"
+              (click)="onActionMenuClick($event, row)"
+            >
+              <span></span>
             </button>
           </td>
         </tr>
@@ -72,12 +78,15 @@
 
     <!-- Dropdown para Itens por Página -->
     <div class="items-per-page">
-      <label for="itemsPerPage">Itens por página:</label>
-      <select id="itemsPerPage" (change)="onItemsPerPageChange($event)">
-        <option *ngFor="let option of itemsPerPageOptions" [value]="option">
-          {{ option }}
-        </option>
-      </select>
+      <div class="items-per-page">
+        <gforge-dropdown
+          [label]="itemsPerPage.toString()"
+          [options]="itemsPerPageDropdownOptions"
+          [variant]="'primary'"
+          [size]="'small'"
+          (selected)="onItemsPerPageChange($event)"
+        ></gforge-dropdown>
+      </div>
     </div>
   </div>
 

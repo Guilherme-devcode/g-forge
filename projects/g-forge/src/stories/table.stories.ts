@@ -184,18 +184,18 @@ export const NoPaginationNoSearch = {
 
 // Cenário com paginação personalizada
 export const CustomPagination = {
-  args: {
-    data: Array.from({ length: 20 }, (_, i) => ({
-      id: i + 1,
-      name: `User ${i + 1}`,
-      age: Math.floor(Math.random() * 50) + 20,
+  args:{
+    data:Array.from({ length: 20 }, (_, i) => ({
+      id:i + 1,
+      name:`User ${i + 1}`,
+      age:Math.floor(Math.random() * 50) + 20,
     })),
-    columns: [
+    columns:[
       { field: 'id', header: 'ID' },
       { field: 'name', header: 'Name' },
       { field: 'age', header: 'Age' },
     ],
-    pagination: true,
-    itemsPerPage: 3,
+    pagination:true,
+    itemsPerPage:10,
   },
 };

@@ -9,88 +9,117 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
+import {
+  DropdownComponent,
+  DropdownOption,
+} from '../dropdown/dropdown.component';
 import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
   selector: 'gforge-table',
-  imports: [CommonModule, FormsModule, InputTextComponent, ButtonComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputTextComponent,
+    ButtonComponent,
+    DropdownComponent,
+  ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  /** Dados da tabela */
-  @Input() data: any[] = [];
+  /** Table data */
+  @Input() public data: any[] = [];
 
-  /** Colunas da tabela */
-  @Input() columns: { field: string; header: string; sortable?: boolean }[] =
+  /** Table columns */
+  @Input() public columns: {
+    field: string;
+    header: string;
+    sortable?: boolean;
+  }[] = [];
+
+  /** Enable pagination */
+  @Input() public pagination: boolean = false;
+
+  /** Items per page */
+  @Input() public itemsPerPage: number = 10;
+
+  /** Current page */
+  @Input() public currentPage: number = 1;
+
+  /** Total items (for external pagination) */
+  @Input() public totalItems?: number;
+
+  /** Enable fixed header */
+  @Input() public fixedHeader: boolean = false;
+
+  /** Enable infinite scroll */
+  @Input() public infiniteScroll: boolean = false;
+
+  /** Context menu options */
+  @Input() public contextMenu: { id: string; name: string; symbol?: string }[] =
     [];
 
-  /** Habilitar paginação */
-  @Input() pagination: boolean = false;
+  /** Search enable */
+  @Input() public searchable: boolean = false;
 
-  /** Itens por página */
-  @Input() itemsPerPage: number = 10;
+  /** Search placeholder */
+  @Input() public searchPlaceholder: string = 'Search...';
 
-  /** Página atual */
-  @Input() currentPage: number = 1;
+  /** Show actions column */
+  @Input() public showActionsColumn: boolean = false;
 
-  /** Total de itens (para paginação externa) */
-  @Input() totalItems?: number;
+  /** Actions column label */
+  @Input() public actionsLabel: string = 'Actions';
 
-  /** Habilitar cabeçalho fixo */
-  @Input() fixedHeader: boolean = false;
+  /** Triggered when scrolled to the end */
+  @Output() public scrolled: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Habilitar scroll infinito */
-  @Input() infiniteScroll: boolean = false;
+  /** Triggered when a search is performed */
+  @Output() public searched: EventEmitter<string> = new EventEmitter<string>();
 
-  @Input() contextMenu: { id: string; name: string; symbol?: string }[] = [];
-
-  /** Evento disparado ao atingir o final do scroll */
-  @Output() scrolled = new EventEmitter<void>();
-
-  /** Habilitar busca */
-  @Input() searchable: boolean = false;
-
-  /** Placeholder para a busca */
-  @Input() searchPlaceholder: string = 'Search...';
-
-  /** Evento disparado ao buscar */
-  @Output() searched = new EventEmitter<string>();
-
-  /** Evento disparado ao ordenar */
-  @Output() sorted = new EventEmitter<{
+  /** Triggered when a column is sorted */
+  @Output() public sorted: EventEmitter<{
     field: string;
     order: 'asc' | 'desc';
-  }>();
+  }> = new EventEmitter<{ field: string; order: 'asc' | 'desc' }>();
 
-  @Output() menuClicked = new EventEmitter<{ menuItem: any; rowData: any }>();
+  /** Triggered when a context menu item is clicked */
+  @Output() public menuClicked: EventEmitter<{ menuItem: any; rowData: any }> =
+    new EventEmitter<{ menuItem: any; rowData: any }>();
 
-  /** Exibir coluna de ações */
-  @Input() showActionsColumn: boolean = false;
+  /** Filtered data based on search term */
+  public filteredData: any[] = [];
 
-  /** Nome coluna de ações */
-  @Input() actionsLabel: string = 'Actions';
+  /** Current search term */
+  public searchTerm: string = '';
 
-  /** Dados filtrados */
-  filteredData: any[] = [];
+  /** Context menu position */
+  public menuPosition = { x: 0, y: 0 };
 
-  /** Termo de busca */
-  searchTerm: string = '';
+  /** Display context menu */
+  public showContextMenu: boolean = false;
 
-  // Controle do menu contextual
-  menuPosition = { x: 0, y: 0 };
-  showContextMenu = false;
-  selectedRow: any;
-  itemsPerPageOptions: number[] = [5, 10, 20, 50]; // Opções disponíveis para o seletor
+  /** Selected row for context menu */
+  public selectedRow: any;
+
+  /** Dropdown options for items per page */
+  public itemsPerPageDropdownOptions: DropdownOption[] = [
+    { label: '5', value: 5 },
+    { label: '10', value: 10 },
+    { label: '20', value: 20 },
+    { label: '50', value: 50 },
+  ];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.filteredData = [...this.data];
   }
 
-  /** Atualiza os dados filtrados com base no termo de busca */
-  onSearch(text: string): void {
+  /** Handles search input changes */
+  public onSearch(text: string): void {
     this.searchTerm = text;
     this.filteredData = this.data.filter((item) =>
       this.columns.some((col) =>
@@ -102,37 +131,38 @@ export class TableComponent implements OnInit {
     this.searched.emit(this.searchTerm);
   }
 
-  onRightClick(event: MouseEvent, row: any): void {
-    event.preventDefault(); // Previne o menu padrão do navegador
+  /** Handles right-click to open context menu */
+  public onRightClick(event: MouseEvent, row: any): void {
+    event.preventDefault();
     this.menuPosition = { x: event.clientX, y: event.clientY };
     this.showContextMenu = true;
     this.selectedRow = row;
-    this.cdr.detectChanges(); // Atualiza mudanças ao fechar o menu
+    this.cdr.detectChanges();
   }
 
-  onActionMenuClick(event: MouseEvent, row: any): void {
-    event.preventDefault(); // Previne comportamentos padrão
-    event.stopPropagation(); // Previne comportamentos padrão
-    this.menuPosition = {
-      x: event.clientX, // Obtém a posição X do clique
-      y: event.clientY, // Obtém a posição Y do clique
-    };
-    this.showContextMenu = true; // Ativa o menu contextual
-    this.selectedRow = row; // Armazena a linha selecionada
-    this.cdr.detectChanges(); // Atualiza mudanças ao fechar o menu
+  /** Handles action menu click */
+  public onActionMenuClick(event: MouseEvent, row: any): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.menuPosition = { x: event.clientX, y: event.clientY };
+    this.showContextMenu = true;
+    this.selectedRow = row;
+    this.cdr.detectChanges();
   }
 
-  onMenuItemClick(menuItem: any): void {
+  /** Handles menu item click */
+  public onMenuItemClick(menuItem: any): void {
     this.menuClicked.emit({ menuItem, rowData: this.selectedRow });
     this.showContextMenu = false;
   }
 
-  onOutsideClick(): void {
-    this.showContextMenu = false; // Fecha o menu ao clicar fora
+  /** Closes the context menu when clicking outside */
+  public onOutsideClick(): void {
+    this.showContextMenu = false;
   }
 
-  /** Ordena a tabela */
-  onSort(column: { field: string; sortable?: boolean }): void {
+  /** Handles sorting a column */
+  public onSort(column: { field: string; sortable?: boolean }): void {
     if (!column.sortable) return;
 
     const currentOrder =
@@ -170,41 +200,44 @@ export class TableComponent implements OnInit {
     this.sorted.emit({ field: column.field, order });
   }
 
-  onItemsPerPageChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.itemsPerPage = parseInt(selectElement.value, 10); // Atualiza itens por página
-    this.currentPage = 1; // Reseta para a primeira página
+  /** Updates the items per page */
+  public onItemsPerPageChange(option: DropdownOption): void {
+    this.itemsPerPage = option.value;
+    this.currentPage = 1;
   }
 
-  goToPreviousPage(): void {
+  /** Navigates to the previous page */
+  public goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
 
-  goToNextPage(): void {
+  /** Navigates to the next page */
+  public goToNextPage(): void {
     if (this.currentPage < this.totalPages.length) {
       this.currentPage++;
     }
   }
 
-  /** Evento de scroll */
-  onScroll(event: Event): void {
+  /** Handles scroll events */
+  public onScroll(event: Event): void {
     const target = event.target as HTMLElement;
     if (target.scrollHeight - target.scrollTop === target.clientHeight) {
       this.scrolled.emit();
     }
   }
 
-  /** Paginação: Retorna os dados da página atual */
-  get paginatedData(): any[] {
+  /** Returns paginated data */
+  public get paginatedData(): any[] {
     if (!this.pagination) return this.filteredData;
 
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredData.slice(start, start + this.itemsPerPage);
   }
 
-  get totalPages(): number[] {
+  /** Calculates total pages */
+  public get totalPages(): number[] {
     const total = this.filteredData.length;
     const pages = Math.ceil(total / this.itemsPerPage);
     return Array.from({ length: pages }, (_, i) => i + 1);
