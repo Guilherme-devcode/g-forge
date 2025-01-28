@@ -26,7 +26,9 @@
             {{ column.header }}
             <span *ngIf="column.sortable" class="sort-icon">⇅</span>
           </th>
-          <th *ngIf="showActionsColumn">{{ actionsLabel }}</th>
+          <th *ngIf="showActionsColumn" class="actions-column">
+            {{ actionsLabel }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -37,9 +39,13 @@
           <td *ngFor="let column of columns">
             {{ row[column.field] }}
           </td>
-          <td *ngIf="showActionsColumn">
-            <button type="button" (click)="onActionMenuClick($event, row)">
-              ⋮
+          <td *ngIf="showActionsColumn" class="actions-column">
+            <button
+              type="button"
+              class="action-button"
+              (click)="onActionMenuClick($event, row)"
+            >
+              <span></span>
             </button>
           </td>
         </tr>
