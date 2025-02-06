@@ -8,23 +8,13 @@ import {
   Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from '../button/button.component';
-import {
-  DropdownComponent,
-  DropdownOption,
-} from '../dropdown/dropdown.component';
+import { DropdownOption } from '../dropdown/dropdown.component';
 import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
   selector: 'gforge-table',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    InputTextComponent,
-    ButtonComponent,
-    DropdownComponent,
-  ],
+  imports: [CommonModule, FormsModule, InputTextComponent],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
@@ -118,6 +108,10 @@ export class TableComponent implements OnInit {
     this.filteredData = [...this.data];
   }
 
+  public getImagePath(imageName: string): string {
+    return `./assets/img/${imageName}`;
+  }
+
   /** Handles search input changes */
   public onSearch(text: string): void {
     this.searchTerm = text;
@@ -201,8 +195,9 @@ export class TableComponent implements OnInit {
   }
 
   /** Updates the items per page */
-  public onItemsPerPageChange(option: DropdownOption): void {
-    this.itemsPerPage = option.value;
+  public onItemsPerPageChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
+    this.itemsPerPage = Number(value);
     this.currentPage = 1;
   }
 

@@ -1,230 +1,144 @@
-@import "../../../styles/variables";
-@import "../../../styles/styles";
+body {
+  background: #f5f5f5;
+  padding: 0;
+  margin: 0;
+}
 
 .gforge-table-container {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 2em;
+  padding: 1rem;
+}
+
+.gforge-search {
+  margin-bottom: 1rem;
+}
+
+.gforge-table {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.gforge-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gforge-table thead {
+  background-color: #eeeeee;
+}
+
+.gforge-table th {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.gforge-table tbody tr {
+  transition: background-color 0.3s;
+}
+
+.gforge-table tbody tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+.gforge-table tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.gforge-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.gforge-pagination {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.gforge-pagination button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gforge-pagination button:disabled {
+  color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.page-numbers button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background 0.3s;
+}
+
+.page-numbers button.active {
+  background-color: #607d8b;
+  color: #fff;
+}
+
+.items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.items-per-page select {
+  border: 1px solid #ddd;
+  padding: 0.3rem;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.context-menu {
+  position: fixed;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  font-family: $font-family;
+}
 
-  // Busca
-  .gforge-search {
-    margin-bottom: 1rem;
-    input {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid $border-color;
-      border-radius: 4px;
-      font-size: 14px;
-      background-color: $input-bg;
-      transition: border-color 0.3s, box-shadow 0.3s;
+.context-menu button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
 
-      &:focus {
-        outline: none;
-        border-color: $primary-color;
-        box-shadow: 0 0 5px rgba($primary-color, 0.5);
-      }
-    }
-  }
-
-  // Tabela
-
-  // Estilização da Tabela
-  .gforge-table {
-    position: relative;
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 8px;
-      overflow: hidden;
-
-      thead {
-        background-color: $table-header-bg;
-
-        th {
-          padding: 1rem;
-          font-weight: 700;
-          text-align: left;
-          color: $table-header-font-color;
-          border: 1px solid $table-border-color;
-        }
-
-        // Estilo específico para a coluna actions
-        .actions-column {
-          width: 80px; /* Ajuste o tamanho conforme necessário */
-          text-align: center;
-        }
-      }
-
-      tbody {
-        tr:nth-child(odd) {
-          background-color: $table-odd-row-bg !important;
-        }
-
-        tr:nth-child(even) {
-          background-color: $table-even-row-bg !important;
-        }
-        tr {
-          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-
-          &:hover {
-            background-color: $table-hover-color !important;
-            color: $table-hover-font-color !important;
-
-            td {
-              color: inherit;
-            }
-          }
-
-          td {
-            padding: 1rem;
-            border: 1px solid $table-border-color;
-            text-align: left;
-            font-size: 14px;
-            color: $table-font-color;
-          }
-
-          // Estilo específico para a coluna actions
-          .actions-column {
-            text-align: center;
-            padding: 0.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-      }
-    }
-
-    // Botão de ações estilizado
-    // Botão de ações estilizado com três barras
-    .action-button {
-      background: none;
-      border: none;
-      border-radius: 4px;
-      padding: 0.25rem;
-      cursor: pointer;
-      position: relative;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.3s ease;
-
-      // Fundo ao passar o mouse
-      &:hover {
-        background-color: lighten($primary-color, 40%);
-      }
-
-      // Barra 1
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 2px;
-        background-color: $font-color;
-        border-radius: 2px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-      }
-
-      // Barra superior
-      &::before {
-        top: 10px;
-      }
-
-      // Barra inferior
-      &::after {
-        top: 20px;
-      }
-
-      // Barra do meio
-      span {
-        position: absolute;
-        width: 16px;
-        height: 2px;
-        background-color: $font-color;
-        border-radius: 2px;
-      }
-    }
-  }
-  // Paginação
-  .gforge-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-
-    button {
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      background-color: $primary-color;
-      color: #fff;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:disabled {
-        background-color: $border-color;
-        cursor: not-allowed;
-      }
-
-      &:hover:not(:disabled) {
-        background-color: darken($primary-color, 10%);
-      }
-    }
-
-    .items-per-page {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      label {
-        font-size: 14px;
-      }
-
-      select {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid $border-color;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: border-color 0.3s;
-
-        &:hover {
-          border-color: $primary-color;
-        }
-      }
-    }
-  }
-
-  // Context Menu
-  .context-menu {
-    position: fixed;
-    z-index: 1000;
-    background-color: #fff;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-
-    button {
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      font-size: 14px;
-      width: 100%;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: lighten($secondary-color, 50%);
-      }
-    }
-  }
+.context-menu button:hover {
+  background-color: #eeeeee;
 }

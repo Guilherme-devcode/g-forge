@@ -57,36 +57,39 @@
   <div *ngIf="pagination" class="gforge-pagination">
     <!-- Botão de Página Anterior -->
     <button [disabled]="currentPage === 1" (click)="goToPreviousPage()">
-      Anterior
+      ‹
     </button>
 
-    <!-- Botões de Páginas -->
-    <gforge-button
-      *ngFor="let page of totalPages"
-      [label]="page.toString()"
-      [variant]="currentPage === page ? 'primary' : 'secondary'"
-      (clicked)="currentPage = page"
-    ></gforge-button>
+    <!-- Números das Páginas -->
+    <div class="page-numbers">
+      <button
+        *ngFor="let page of totalPages"
+        [class.active]="currentPage === page"
+        (click)="currentPage = page"
+      >
+        {{ page }}
+      </button>
+    </div>
 
     <!-- Botão de Próxima Página -->
     <button
       [disabled]="currentPage === totalPages.length"
       (click)="goToNextPage()"
     >
-      Próximo
+      ›
     </button>
 
     <!-- Dropdown para Itens por Página -->
     <div class="items-per-page">
-      <div class="items-per-page">
-        <gforge-dropdown
-          [label]="itemsPerPage.toString()"
-          [options]="itemsPerPageDropdownOptions"
-          [variant]="'primary'"
-          [size]="'small'"
-          (selected)="onItemsPerPageChange($event)"
-        ></gforge-dropdown>
-      </div>
+      <span>Itens por página:</span>
+      <select (change)="onItemsPerPageChange($event)">
+        <option
+          *ngFor="let option of itemsPerPageDropdownOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
     </div>
   </div>
 
