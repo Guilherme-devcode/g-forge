@@ -1,0 +1,322 @@
+@import '../../styles/variables';
+
+.gforge-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  transition: all 0.2s ease;
+  gap: 4px;
+
+  &__content {
+    line-height: 1;
+  }
+
+  &__icon {
+    font-size: 0.8em;
+  }
+
+  &__remove {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1;
+    padding: 0;
+    margin-left: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Tamanhos
+  &--small {
+    font-size: 10px;
+    padding: 2px 6px;
+    min-width: 18px;
+    height: 18px;
+  }
+
+  &--medium {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: 22px;
+    height: 22px;
+  }
+
+  &--large {
+    font-size: 14px;
+    padding: 6px 12px;
+    min-width: 28px;
+    height: 28px;
+  }
+
+  // Formatos
+  &--rounded {
+    border-radius: 4px;
+  }
+
+  &--pill {
+    border-radius: 50px;
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  // Variantes de cor
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary-color;
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+    }
+  }
+
+  &--success {
+    background-color: $success-color;
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid $success-color;
+      color: $success-color;
+    }
+  }
+
+  &--danger {
+    background-color: $danger-color;
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid $danger-color;
+      color: $danger-color;
+    }
+  }
+
+  &--warning {
+    background-color: #ffc107;
+    color: #000;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid #ffc107;
+      color: #ffc107;
+    }
+  }
+
+  &--info {
+    background-color: $info-color;
+    color: #000;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid $info-color;
+      color: $info-color;
+    }
+  }
+
+  &--light {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid #dee2e6;
+      color: #495057;
+    }
+  }
+
+  &--dark {
+    background-color: #343a40;
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid #343a40;
+      color: #343a40;
+    }
+  }
+
+  // Cor personalizada
+  &[style*=\"--badge-color\"] {
+    background-color: var(--badge-color);
+    color: white;
+
+    &.gforge-badge--outline {
+      background-color: transparent;
+      border: 1px solid var(--badge-color);
+      color: var(--badge-color);
+    }
+  }
+
+  // Efeito brilhante
+  &--glow {
+    &.gforge-badge--primary {
+      box-shadow: 0 0 10px rgba($primary-color, 0.5);
+    }
+
+    &.gforge-badge--secondary {
+      box-shadow: 0 0 10px rgba($secondary-color, 0.5);
+    }
+
+    &.gforge-badge--success {
+      box-shadow: 0 0 10px rgba($success-color, 0.5);
+    }
+
+    &.gforge-badge--danger {
+      box-shadow: 0 0 10px rgba($danger-color, 0.5);
+    }
+
+    &.gforge-badge--warning {
+      box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+    }
+
+    &.gforge-badge--info {
+      box-shadow: 0 0 10px rgba($info-color, 0.5);
+    }
+
+    &[style*=\"--badge-color\"] {
+      box-shadow: 0 0 10px rgba(var(--badge-color-rgb), 0.5);
+    }
+  }
+
+  // Efeito de pulso
+  &--pulse {
+    animation: badgePulse 2s infinite;
+  }
+
+  // Posicionamento (para uso como notification)
+  &--positioned {
+    position: absolute;
+    z-index: 10;
+  }
+
+  &--top-right {
+    top: -8px;
+    right: -8px;
+  }
+
+  &--top-left {
+    top: -8px;
+    left: -8px;
+  }
+
+  &--bottom-right {
+    bottom: -8px;
+    right: -8px;
+  }
+
+  &--bottom-left {
+    bottom: -8px;
+    left: -8px;
+  }
+
+  // Estado hover para badges removíveis
+  &--removable {
+    padding-right: 6px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  // Estados especiais
+  &:empty {
+    &.gforge-badge--small {
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    &.gforge-badge--medium {
+      width: 10px;
+      height: 10px;
+      min-width: 10px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    &.gforge-badge--large {
+      width: 12px;
+      height: 12px;
+      min-width: 12px;
+      padding: 0;
+      border-radius: 50%;
+    }
+  }
+}
+
+// Container para posicionamento relativo
+.gforge-badge-container {
+  position: relative;
+  display: inline-block;
+}
+
+// Animações
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .gforge-badge {
+    &--large {
+      font-size: 13px;
+      padding: 5px 10px;
+      min-width: 26px;
+      height: 26px;
+    }
+
+    &--medium {
+      font-size: 11px;
+      padding: 3px 7px;
+      min-width: 20px;
+      height: 20px;
+    }
+
+    &--small {
+      font-size: 9px;
+      padding: 2px 5px;
+      min-width: 16px;
+      height: 16px;
+    }
+  }
+}

@@ -1,0 +1,235 @@
+@import '../../styles/variables';
+
+.gforge-neon-button {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--neon-color, #00ff88);
+  color: var(--neon-color, #00ff88);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  outline: none;
+  
+  // Glow effect base
+  box-shadow: 
+    0 0 10px var(--neon-color, #00ff88),
+    inset 0 0 20px rgba(var(--neon-color-rgb, 0, 255, 136), 0.1);
+
+  &__content {
+    position: relative;
+    z-index: 3;
+    display: block;
+  }
+
+  &__scan-line {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--neon-color-rgb, 0, 255, 136), 0.4),
+      transparent
+    );
+    animation: scanLine 2s linear infinite;
+    z-index: 2;
+  }
+
+  &__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    
+    &--outer {
+      background: var(--neon-color, #00ff88);
+      filter: blur(20px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+    
+    &--inner {
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(var(--neon-color-rgb, 0, 255, 136), 0.2),
+        transparent
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+  }
+
+  // Tamanhos
+  &--small {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+
+  &--medium {
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  &--large {
+    padding: 16px 32px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  // Estilos de glow
+  &--pulse {
+    animation: neonPulse 2s ease-in-out infinite alternate;
+  }
+
+  &--static {
+    // Sem animação adicional
+  }
+
+  &--flicker {
+    animation: neonFlicker 0.15s infinite linear alternate;
+  }
+
+  &--wave {
+    animation: neonWave 3s ease-in-out infinite;
+  }
+
+  // Estados interativos
+  &:hover:not(&--disabled) {
+    color: #000;
+    background: var(--neon-color, #00ff88);
+    text-shadow: 0 0 10px #000;
+    
+    .gforge-neon-button__glow--outer {
+      opacity: 0.8;
+    }
+    
+    .gforge-neon-button__glow--inner {
+      opacity: 1;
+    }
+    
+    box-shadow: 
+      0 0 20px var(--neon-color, #00ff88),
+      0 0 40px var(--neon-color, #00ff88),
+      inset 0 0 20px rgba(var(--neon-color-rgb, 0, 255, 136), 0.2);
+  }
+
+  &:active:not(&--disabled) {
+    transform: scale(0.98);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &:hover {
+      color: var(--neon-color, #00ff88);
+      background: transparent;
+      text-shadow: none;
+      
+      .gforge-neon-button__glow--outer,
+      .gforge-neon-button__glow--inner {
+        opacity: 0;
+      }
+    }
+  }
+
+  // Variação sem scan line
+  &:not(&--scan) {
+    .gforge-neon-button__scan-line {
+      display: none;
+    }
+  }
+}
+
+// Animações
+@keyframes scanLine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes neonPulse {
+  from {
+    box-shadow: 
+      0 0 10px var(--neon-color, #00ff88),
+      inset 0 0 20px rgba(var(--neon-color-rgb, 0, 255, 136), 0.1);
+  }
+  to {
+    box-shadow: 
+      0 0 20px var(--neon-color, #00ff88),
+      0 0 30px var(--neon-color, #00ff88),
+      inset 0 0 20px rgba(var(--neon-color-rgb, 0, 255, 136), 0.2);
+  }
+}
+
+@keyframes neonFlicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes neonWave {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px var(--neon-color, #00ff88),
+      inset 0 0 20px rgba(var(--neon-color-rgb, 0, 255, 136), 0.1);
+  }
+  25% {
+    box-shadow: 
+      0 0 15px var(--neon-color, #00ff88),
+      0 0 25px var(--neon-color, #00ff88),
+      inset 0 0 25px rgba(var(--neon-color-rgb, 0, 255, 136), 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--neon-color, #00ff88),
+      0 0 35px var(--neon-color, #00ff88),
+      inset 0 0 30px rgba(var(--neon-color-rgb, 0, 255, 136), 0.2);
+  }
+  75% {
+    box-shadow: 
+      0 0 15px var(--neon-color, #00ff88),
+      0 0 25px var(--neon-color, #00ff88),
+      inset 0 0 25px rgba(var(--neon-color-rgb, 0, 255, 136), 0.15);
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .gforge-neon-button {
+    &--large {
+      padding: 14px 28px;
+      font-size: 15px;
+    }
+    
+    &--medium {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+    
+    &--small {
+      padding: 6px 12px;
+      font-size: 11px;
+    }
+  }
+}

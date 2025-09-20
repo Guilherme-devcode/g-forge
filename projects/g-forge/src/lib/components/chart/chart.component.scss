@@ -1,0 +1,169 @@
+@import '../../styles/variables';
+
+.gforge-chart {
+  font-family: $font-family;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  &__header {
+    padding: 20px 24px 16px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__title {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: $font-color;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: lighten($font-color, 20%);
+  }
+
+  &__canvas-container {
+    position: relative;
+    padding: 20px;
+    min-height: 300px;
+  }
+
+  &__canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__controls {
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  // TEMA DARK
+  &--dark {
+    background: #1a1a1a;
+    color: #e0e0e0;
+
+    .gforge-chart__header {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      border-bottom-color: #404040;
+    }
+
+    .gforge-chart__title {
+      color: #e0e0e0;
+    }
+
+    .gforge-chart__subtitle {
+      color: #888;
+    }
+
+    .gforge-chart__controls {
+      background: #2d2d2d;
+      border-top-color: #404040;
+    }
+  }
+
+  // TEMA NEON
+  &--neon {
+    background: #0a0a0a;
+    border: 1px solid #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+
+    .gforge-chart__header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid #00ff88;
+    }
+
+    .gforge-chart__title {
+      color: #00ff88;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+
+    .gforge-chart__subtitle {
+      color: rgba(0, 255, 136, 0.7);
+    }
+
+    .gforge-chart__controls {
+      background: #1a1a1a;
+      border-top: 1px solid #00ff88;
+    }
+
+    &:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+      transform: translateY(-3px);
+    }
+  }
+
+  // TEMA MINIMAL
+  &--minimal {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+
+    .gforge-chart__header {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .gforge-chart__controls {
+      background: white;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .gforge-chart {
+    &__header {
+      padding: 16px 20px 12px 20px;
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__subtitle {
+      font-size: 13px;
+    }
+
+    &__canvas-container {
+      padding: 15px;
+      min-height: 250px;
+    }
+
+    &__controls {
+      padding: 12px 16px;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .gforge-chart {
+    &__canvas-container {
+      min-height: 200px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div #chartContainer [class]="chartClass">
+  <!-- Título do gráfico -->
+  <div class="gforge-chart__header" *ngIf="config.title || config.subtitle">
+    <h3 class="gforge-chart__title" *ngIf="config.title">{{ config.title }}</h3>
+    <p class="gforge-chart__subtitle" *ngIf="config.subtitle">{{ config.subtitle }}</p>
+  </div>
+
+  <!-- Canvas do gráfico -->
+  <div class="gforge-chart__canvas-container">
+    <canvas #chartCanvas class="gforge-chart__canvas"></canvas>
+  </div>
+
+  <!-- Controles do gráfico -->
+  <div class="gforge-chart__controls" *ngIf="data.length > 0">
+    <ng-content select="[slot=controls]"></ng-content>
+  </div>
+</div>

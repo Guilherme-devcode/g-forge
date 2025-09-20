@@ -1,0 +1,40 @@
+<div [class]="loadingClass" [ngStyle]="customStyle">
+  
+  <!-- Spinner -->
+  <div *ngIf="type === 'spinner'" class="gforge-loading__spinner">
+    <div class="gforge-loading__spinner-circle"></div>
+  </div>
+  
+  <!-- Dots -->
+  <div *ngIf="type === 'dots'" class="gforge-loading__dots">
+    <div class="gforge-loading__dot" *ngFor="let dot of [1,2,3]"></div>
+  </div>
+  
+  <!-- Pulse -->
+  <div *ngIf="type === 'pulse'" class="gforge-loading__pulse">
+    <div class="gforge-loading__pulse-circle" *ngFor="let circle of [1,2,3]"></div>
+  </div>
+  
+  <!-- Bars -->
+  <div *ngIf="type === 'bars'" class="gforge-loading__bars">
+    <div class="gforge-loading__bar" *ngFor="let bar of [1,2,3,4,5]"></div>
+  </div>
+  
+  <!-- Ripple -->
+  <div *ngIf="type === 'ripple'" class="gforge-loading__ripple">
+    <div class="gforge-loading__ripple-circle" *ngFor="let ripple of [1,2]"></div>
+  </div>
+  
+  <!-- Neon -->
+  <div *ngIf="type === 'neon'" class="gforge-loading__neon">
+    <div class="gforge-loading__neon-ring">
+      <div class="gforge-loading__neon-inner"></div>
+    </div>
+  </div>
+  
+  <!-- Texto de carregamento -->
+  <div class="gforge-loading__text" *ngIf="text">
+    {{ text }}
+  </div>
+  
+</div>

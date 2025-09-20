@@ -1,0 +1,334 @@
+@import '../../styles/variables';
+
+.gforge-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+  color: var(--loading-color, #{$primary-color});
+
+  &--overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    backdrop-filter: blur(2px);
+  }
+
+  &__text {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--loading-color, #{$primary-color});
+  }
+
+  // Tamanhos
+  &--small {
+    .gforge-loading__spinner-circle {
+      width: 20px;
+      height: 20px;
+      border-width: 2px;
+    }
+    
+    .gforge-loading__dot {
+      width: 6px;
+      height: 6px;
+    }
+    
+    .gforge-loading__pulse-circle {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .gforge-loading__bar {
+      width: 3px;
+      height: 20px;
+    }
+    
+    .gforge-loading__neon-ring {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .gforge-loading__text {
+      font-size: 12px;
+      margin-top: 12px;
+    }
+  }
+
+  &--medium {
+    .gforge-loading__spinner-circle {
+      width: 40px;
+      height: 40px;
+      border-width: 4px;
+    }
+    
+    .gforge-loading__dot {
+      width: 10px;
+      height: 10px;
+    }
+    
+    .gforge-loading__pulse-circle {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .gforge-loading__bar {
+      width: 4px;
+      height: 40px;
+    }
+    
+    .gforge-loading__neon-ring {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  &--large {
+    .gforge-loading__spinner-circle {
+      width: 60px;
+      height: 60px;
+      border-width: 6px;
+    }
+    
+    .gforge-loading__dot {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .gforge-loading__pulse-circle {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .gforge-loading__bar {
+      width: 6px;
+      height: 60px;
+    }
+    
+    .gforge-loading__neon-ring {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .gforge-loading__text {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  }
+
+  // SPINNER
+  &__spinner-circle {
+    border: 4px solid rgba(var(--loading-color-rgb, 78, 205, 196), 0.2);
+    border-top: 4px solid var(--loading-color, #{$primary-color});
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  // DOTS
+  &__dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__dot {
+    background: var(--loading-color, #{$primary-color});
+    border-radius: 50%;
+    animation: dotBounce 1.4s ease-in-out infinite both;
+    
+    &:nth-child(1) { animation-delay: -0.32s; }
+    &:nth-child(2) { animation-delay: -0.16s; }
+    &:nth-child(3) { animation-delay: 0s; }
+  }
+
+  // PULSE
+  &__pulse {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__pulse-circle {
+    position: absolute;
+    border: 2px solid var(--loading-color, #{$primary-color});
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    
+    &:nth-child(2) { animation-delay: 0.5s; }
+    &:nth-child(3) { animation-delay: 1s; }
+  }
+
+  // BARS
+  &__bars {
+    display: flex;
+    gap: 4px;
+    align-items: end;
+  }
+
+  &__bar {
+    background: var(--loading-color, #{$primary-color});
+    border-radius: 2px;
+    animation: barScale 1.2s ease-in-out infinite;
+    
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.1s; }
+    &:nth-child(3) { animation-delay: 0.2s; }
+    &:nth-child(4) { animation-delay: 0.3s; }
+    &:nth-child(5) { animation-delay: 0.4s; }
+  }
+
+  // RIPPLE
+  &__ripple {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+
+  &__ripple-circle {
+    position: absolute;
+    border: 2px solid var(--loading-color, #{$primary-color});
+    border-radius: 50%;
+    animation: ripple 2s linear infinite;
+    
+    &:nth-child(2) { animation-delay: 1s; }
+  }
+
+  // NEON
+  &__neon-ring {
+    position: relative;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: linear-gradient(45deg, var(--loading-color, #{$primary-color}), transparent, var(--loading-color, #{$primary-color}));
+    background-clip: padding-box;
+    animation: neonRotate 2s linear infinite;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--loading-color, #{$primary-color}), transparent);
+      z-index: -1;
+      animation: neonRotate 2s linear infinite reverse;
+    }
+  }
+
+  &__neon-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--loading-color-rgb, 78, 205, 196), 0.3), transparent);
+    animation: neonPulse 1s ease-in-out infinite alternate;
+  }
+
+  // TEMAS
+  &--dark {
+    &.gforge-loading--overlay {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .gforge-loading__text {
+      color: #fff;
+    }
+  }
+
+  &--neon {
+    &.gforge-loading--overlay {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .gforge-loading__text {
+      color: var(--loading-color, #{$primary-color});
+      text-shadow: 0 0 10px var(--loading-color, #{$primary-color});
+      font-family: 'Courier New', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    // Efeitos neon para todos os tipos
+    .gforge-loading__spinner-circle {
+      box-shadow: 0 0 20px var(--loading-color, #{$primary-color});
+    }
+    
+    .gforge-loading__dot {
+      box-shadow: 0 0 10px var(--loading-color, #{$primary-color});
+    }
+    
+    .gforge-loading__bar {
+      box-shadow: 0 0 15px var(--loading-color, #{$primary-color});
+    }
+  }
+}
+
+// Animações
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes barScale {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes neonRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes neonPulse {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
