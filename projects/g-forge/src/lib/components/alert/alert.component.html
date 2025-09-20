@@ -1,0 +1,62 @@
+<div
+  *ngIf="isVisible"
+  [class]="alertClass"
+  role="alert"
+  [attr.aria-live]="variant === 'danger' ? 'assertive' : 'polite'"
+  (mouseenter)="pauseAutoDismiss()"
+  (mouseleave)="resumeAutoDismiss()"
+>
+  <!-- Icon (left/top position) -->
+  <div *ngIf="shouldShowIcon && iconPosition === 'left'" class="gforge-alert__icon">
+    <span [innerHTML]="displayIcon"></span>
+  </div>
+
+  <!-- Content Container -->
+  <div class="gforge-alert__content">
+    <!-- Icon (top position) -->
+    <div *ngIf="shouldShowIcon && iconPosition === 'top'" class="gforge-alert__icon gforge-alert__icon--top">
+      <span [innerHTML]="displayIcon"></span>
+    </div>
+
+    <!-- Title -->
+    <h4 *ngIf="title" class="gforge-alert__title">
+      <span *ngIf="!allowHtml">{{ title }}</span>
+      <span *ngIf="allowHtml" [innerHTML]="title"></span>
+    </h4>
+
+    <!-- Message -->
+    <div *ngIf="message" class="gforge-alert__message">
+      <span *ngIf="!allowHtml">{{ message }}</span>
+      <span *ngIf="allowHtml" [innerHTML]="message"></span>
+    </div>
+
+    <!-- Projected Content -->
+    <div class="gforge-alert__slot">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Actions -->
+    <div *ngIf="shouldShowActions" class="gforge-alert__actions">
+      <button
+        *ngFor="let action of actions"
+        type="button"
+        [class]="getActionClass(action)"
+        (click)="executeAction(action)"
+      >
+        <span *ngIf="action.icon" class="gforge-alert__action-icon" [innerHTML]="action.icon"></span>
+        <span class="gforge-alert__action-label">{{ action.label }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Close Button -->
+  <button
+    *ngIf="closable"
+    type="button"
+    class="gforge-alert__close"
+    aria-label="Fechar alerta"
+    (click)="close()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>

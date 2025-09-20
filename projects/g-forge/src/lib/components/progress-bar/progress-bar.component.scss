@@ -1,0 +1,436 @@
+@import '../../styles/variables';
+
+:root {
+  --progress-color: #{$primary-color};
+  --progress-bg: #e9ecef;
+  --progress-buffer: #f8f9fa;
+}
+
+.gforge-progress {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  // Orientations
+  &--horizontal {
+    flex-direction: column;
+    
+    .gforge-progress__container {
+      width: 100%;
+      display: flex;
+      position: relative;
+    }
+  }
+
+  &--vertical {
+    flex-direction: row;
+    height: 200px;
+    
+    .gforge-progress__container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+    }
+  }
+
+  // Sizes
+  &--small {
+    .gforge-progress__container {
+      height: 4px;
+    }
+    
+    &.gforge-progress--vertical .gforge-progress__container {
+      width: 4px;
+      height: 120px;
+    }
+  }
+
+  &--medium {
+    .gforge-progress__container {
+      height: 8px;
+    }
+    
+    &.gforge-progress--vertical .gforge-progress__container {
+      width: 8px;
+      height: 160px;
+    }
+  }
+
+  &--large {
+    .gforge-progress__container {
+      height: 16px;
+    }
+    
+    &.gforge-progress--vertical .gforge-progress__container {
+      width: 16px;
+      height: 200px;
+    }
+  }
+
+  &--extra-large {
+    .gforge-progress__container {
+      height: 24px;
+    }
+    
+    &.gforge-progress--vertical .gforge-progress__container {
+      width: 24px;
+      height: 240px;
+    }
+  }
+
+  // Shapes
+  &--rounded {
+    .gforge-progress__container,
+    .gforge-progress__bar,
+    .gforge-progress__buffer,
+    .gforge-progress__segment {
+      border-radius: 4px;
+    }
+  }
+
+  &--square {
+    .gforge-progress__container,
+    .gforge-progress__bar,
+    .gforge-progress__buffer,
+    .gforge-progress__segment {
+      border-radius: 0;
+    }
+  }
+
+  &--pill {
+    .gforge-progress__container,
+    .gforge-progress__bar,
+    .gforge-progress__buffer,
+    .gforge-progress__segment {
+      border-radius: 50px;
+    }
+  }
+
+  // Colors
+  &--primary {
+    --progress-color: #{$primary-color};
+  }
+
+  &--success {
+    --progress-color: #{$success-color};
+  }
+
+  &--warning {
+    --progress-color: #ffc107;
+  }
+
+  &--danger {
+    --progress-color: #{$danger-color};
+  }
+
+  &--info {
+    --progress-color: #{$info-color};
+  }
+
+  &--secondary {
+    --progress-color: #{$secondary-color};
+  }
+
+  // Variants
+  &--striped {
+    .gforge-progress__bar,
+    .gforge-progress__segment {
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 1rem 1rem;
+    }
+  }
+
+  &--animated {
+    .gforge-progress__bar,
+    .gforge-progress__segment {
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    &.gforge-progress--striped {
+      .gforge-progress__bar,
+      .gforge-progress__segment {
+        animation: progress-bar-stripes 1s linear infinite;
+      }
+    }
+  }
+
+  &--gradient {
+    .gforge-progress__bar,
+    .gforge-progress__segment {
+      background: linear-gradient(
+        90deg,
+        var(--progress-color),
+        lighten(var(--progress-color), 20%)
+      );
+    }
+  }
+
+  &--neon {
+    .gforge-progress__container {
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .gforge-progress__bar,
+    .gforge-progress__segment {
+      background: var(--progress-color);
+      box-shadow: 
+        0 0 10px var(--progress-color),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+      animation: neon-pulse 2s ease-in-out infinite alternate;
+    }
+  }
+
+  &--indeterminate {
+    .gforge-progress__bar {
+      width: 100% !important;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--progress-color),
+        transparent
+      );
+      animation: indeterminate 2s ease-in-out infinite;
+    }
+
+    &.gforge-progress--vertical .gforge-progress__bar {
+      height: 100% !important;
+      background: linear-gradient(
+        0deg,
+        transparent,
+        var(--progress-color),
+        transparent
+      );
+      animation: indeterminate-vertical 2s ease-in-out infinite;
+    }
+  }
+}
+
+.gforge-progress__container {
+  background-color: var(--progress-bg);
+  overflow: hidden;
+  position: relative;
+}
+
+.gforge-progress__buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--progress-buffer);
+  transition: width 0.3s ease;
+}
+
+.gforge-progress__bar {
+  height: 100%;
+  background-color: var(--progress-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.gforge-progress__segments {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  .gforge-progress--vertical & {
+    flex-direction: column;
+  }
+}
+
+.gforge-progress__segment {
+  height: 100%;
+  background-color: var(--progress-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 1px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .gforge-progress--vertical & {
+    margin-right: 0;
+    margin-bottom: 1px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.gforge-progress__segment-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.gforge-progress__text {
+  font-size: 12px;
+  font-weight: 600;
+  color: $font-color;
+  white-space: nowrap;
+
+  &--outside {
+    margin-bottom: 4px;
+
+    .gforge-progress--vertical & {
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+  }
+
+  &--inside {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &--center {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &--center-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $font-color;
+    font-weight: 700;
+    z-index: 10;
+    text-shadow: 0 0 3px white;
+  }
+}
+
+.gforge-progress__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.gforge-progress__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gforge-progress__legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.gforge-progress__legend-label {
+  color: $font-color;
+}
+
+// Animations
+@keyframes progress-bar-stripes {
+  0% {
+    background-position-x: 1rem;
+  }
+}
+
+@keyframes indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes indeterminate-vertical {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes neon-pulse {
+  0% {
+    box-shadow: 
+      0 0 5px var(--progress-color),
+      inset 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 
+      0 0 20px var(--progress-color),
+      0 0 30px var(--progress-color),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .gforge-progress {
+    &--vertical {
+      height: 120px;
+    }
+
+    &--extra-large.gforge-progress--vertical .gforge-progress__container {
+      height: 160px;
+    }
+  }
+
+  .gforge-progress__text {
+    font-size: 11px;
+  }
+
+  .gforge-progress__legend {
+    font-size: 11px;
+    gap: 8px;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .gforge-progress__container {
+    border: 1px solid currentColor;
+  }
+
+  .gforge-progress__bar,
+  .gforge-progress__segment {
+    border: 1px solid currentColor;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .gforge-progress--animated .gforge-progress__bar,
+  .gforge-progress--animated .gforge-progress__segment {
+    transition: none;
+  }
+
+  .gforge-progress--indeterminate .gforge-progress__bar {
+    animation: none;
+    background: var(--progress-color);
+  }
+
+  .gforge-progress--neon .gforge-progress__bar,
+  .gforge-progress--neon .gforge-progress__segment {
+    animation: none;
+  }
+}

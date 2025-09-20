@@ -1,0 +1,25 @@
+<!-- Trigger element -->
+<div class="gforge-tooltip-trigger">
+  <ng-content></ng-content>
+</div>
+
+<!-- Tooltip -->
+<div
+  #tooltipElement
+  *ngIf="shouldShow"
+  [class]="tooltipClass"
+  [ngStyle]="tooltipStyles"
+  role="tooltip"
+  [attr.aria-hidden]="!isVisible"
+>
+  <div class="gforge-tooltip__content">
+    <!-- Text content -->
+    <span *ngIf="!allowHtml">{{ content }}</span>
+    
+    <!-- HTML content -->
+    <span *ngIf="allowHtml" [innerHTML]="content"></span>
+  </div>
+  
+  <!-- Arrow -->
+  <div class="gforge-tooltip__arrow"></div>
+</div>

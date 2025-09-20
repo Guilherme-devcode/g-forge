@@ -1,0 +1,468 @@
+@import '../../styles/variables';
+
+.gforge-alert {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  position: relative;
+  margin-bottom: 16px;
+  word-wrap: break-word;
+
+  &--animated {
+    transition: all 0.3s ease;
+    animation: alert-enter 0.3s ease;
+  }
+
+  &--hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  // Variants - Filled
+  &--success {
+    background-color: rgba($success-color, 0.1);
+    border-color: rgba($success-color, 0.3);
+    color: darken($success-color, 20%);
+
+    .gforge-alert__icon {
+      color: $success-color;
+    }
+
+    .gforge-alert__title {
+      color: darken($success-color, 30%);
+    }
+  }
+
+  &--info {
+    background-color: rgba($info-color, 0.1);
+    border-color: rgba($info-color, 0.3);
+    color: darken($info-color, 40%);
+
+    .gforge-alert__icon {
+      color: darken($info-color, 20%);
+    }
+
+    .gforge-alert__title {
+      color: darken($info-color, 50%);
+    }
+  }
+
+  &--warning {
+    background-color: rgba(#ffc107, 0.1);
+    border-color: rgba(#ffc107, 0.3);
+    color: darken(#ffc107, 40%);
+
+    .gforge-alert__icon {
+      color: darken(#ffc107, 20%);
+    }
+
+    .gforge-alert__title {
+      color: darken(#ffc107, 50%);
+    }
+  }
+
+  &--danger {
+    background-color: rgba($danger-color, 0.1);
+    border-color: rgba($danger-color, 0.3);
+    color: darken($danger-color, 20%);
+
+    .gforge-alert__icon {
+      color: $danger-color;
+    }
+
+    .gforge-alert__title {
+      color: darken($danger-color, 30%);
+    }
+  }
+
+  &--primary {
+    background-color: rgba($primary-color, 0.1);
+    border-color: rgba($primary-color, 0.3);
+    color: darken($primary-color, 30%);
+
+    .gforge-alert__icon {
+      color: $primary-color;
+    }
+
+    .gforge-alert__title {
+      color: darken($primary-color, 40%);
+    }
+  }
+
+  &--secondary {
+    background-color: rgba($secondary-color, 0.1);
+    border-color: rgba($secondary-color, 0.3);
+    color: darken($secondary-color, 10%);
+
+    .gforge-alert__icon {
+      color: $secondary-color;
+    }
+
+    .gforge-alert__title {
+      color: darken($secondary-color, 20%);
+    }
+  }
+
+  // Outline variants
+  &--outline {
+    background-color: transparent;
+
+    &.gforge-alert--success {
+      border-color: $success-color;
+      color: darken($success-color, 10%);
+    }
+
+    &.gforge-alert--info {
+      border-color: darken($info-color, 20%);
+      color: darken($info-color, 30%);
+    }
+
+    &.gforge-alert--warning {
+      border-color: #ffc107;
+      color: darken(#ffc107, 30%);
+    }
+
+    &.gforge-alert--danger {
+      border-color: $danger-color;
+      color: darken($danger-color, 10%);
+    }
+
+    &.gforge-alert--primary {
+      border-color: $primary-color;
+      color: darken($primary-color, 20%);
+    }
+
+    &.gforge-alert--secondary {
+      border-color: $secondary-color;
+      color: $secondary-color;
+    }
+  }
+
+  // Bordered
+  &--bordered {
+    border-width: 2px;
+  }
+
+  // Sizes
+  &--small {
+    padding: 8px 12px;
+    font-size: 13px;
+
+    .gforge-alert__title {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .gforge-alert__icon {
+      font-size: 14px;
+    }
+
+    .gforge-alert__close {
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &--medium {
+    padding: 12px 16px;
+    font-size: 14px;
+
+    .gforge-alert__title {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .gforge-alert__icon {
+      font-size: 16px;
+    }
+
+    .gforge-alert__close {
+      font-size: 18px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &--large {
+    padding: 16px 20px;
+    font-size: 15px;
+
+    .gforge-alert__title {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .gforge-alert__icon {
+      font-size: 20px;
+    }
+
+    .gforge-alert__close {
+      font-size: 20px;
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  // Icon positions
+  &--icon-left {
+    .gforge-alert__icon {
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+  }
+
+  &--icon-top {
+    flex-direction: column;
+    text-align: center;
+
+    .gforge-alert__icon--top {
+      margin-bottom: 8px;
+      align-self: center;
+    }
+  }
+
+  // Closable
+  &--closable {
+    padding-right: 40px;
+  }
+}
+
+.gforge-alert__icon {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.gforge-alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gforge-alert__title {
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.gforge-alert__message {
+  margin: 0;
+  line-height: 1.5;
+
+  // Estilo para HTML content
+  :deep(p) {
+    margin: 0 0 8px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :deep(ul), :deep(ol) {
+    margin: 4px 0 8px 16px;
+  }
+
+  :deep(a) {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  :deep(strong) {
+    font-weight: 600;
+  }
+
+  :deep(code) {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+}
+
+.gforge-alert__slot {
+  margin-top: 4px;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.gforge-alert__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.gforge-alert__action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: none;
+  text-decoration: none;
+
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: currentColor;
+    border-color: currentColor;
+
+    &:hover {
+      background-color: rgba(currentColor, 0.1);
+    }
+  }
+
+  &--danger {
+    background-color: $danger-color;
+    color: white;
+    border-color: $danger-color;
+
+    &:hover {
+      background-color: darken($danger-color, 10%);
+      border-color: darken($danger-color, 10%);
+    }
+  }
+}
+
+.gforge-alert__action-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.gforge-alert__action-label {
+  line-height: 1;
+}
+
+.gforge-alert__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  line-height: 1;
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    opacity: 1;
+  }
+}
+
+// Animations
+@keyframes alert-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .gforge-alert {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+
+    &--closable {
+      padding-right: 36px;
+    }
+  }
+
+  .gforge-alert__actions {
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  .gforge-alert__action {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .gforge-alert__close {
+    top: 6px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .gforge-alert {
+    border-width: 2px;
+  }
+
+  .gforge-alert__close {
+    border: 1px solid currentColor;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .gforge-alert--animated {
+    animation: none;
+    transition: none;
+  }
+
+  .gforge-alert__action {
+    transition: none;
+  }
+
+  .gforge-alert__close {
+    transition: none;
+  }
+}
