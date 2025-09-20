@@ -1,0 +1,85 @@
+<div [class]="tabsClass">
+  <!-- Tab Headers -->
+  <div class="gforge-tabs__header">
+    <div class="gforge-tabs__nav" role="tablist">
+      <button
+        *ngFor="let tab of tabs; trackBy: trackByFn"
+        type="button"
+        role="tab"
+        [class]="getTabClass(tab)"
+        [attr.aria-selected]="isTabActive(tab)"
+        [attr.aria-controls]="'tab-content-' + tab.id"
+        [attr.id]="'tab-' + tab.id"
+        [disabled]="tab.disabled"
+        [tabindex]="isTabActive(tab) ? 0 : -1"
+        (click)="selectTab(tab)"
+        (keydown.enter)="selectTab(tab)"
+        (keydown.space)="$event.preventDefault(); selectTab(tab)"
+        (keydown.arrowRight)="nextTab()"
+        (keydown.arrowLeft)="previousTab()"
+      >
+        <!-- Icon -->
+        <span 
+          *ngIf="tab.icon" 
+          class="gforge-tabs__icon"
+          [innerHTML]="tab.icon"
+        ></span>
+
+        <!-- Label -->
+        <span class="gforge-tabs__label">{{ tab.label }}</span>
+
+        <!-- Badge -->
+        <span 
+          *ngIf="tab.badge" 
+          class="gforge-tabs__badge"
+        >
+          {{ tab.badge }}
+        </span>
+
+        <!-- Close Button -->
+        <button
+          *ngIf="tab.closable || closable"
+          type="button"
+          class="gforge-tabs__close"
+          [attr.aria-label]="'Fechar aba ' + tab.label"
+          (click)="closeTab(tab, $event)"
+          tabindex="-1"
+        >
+          ×
+        </button>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="gforge-tabs__content">
+    <div
+      *ngFor="let tab of tabs; trackBy: trackByFn"
+      class="gforge-tabs__panel"
+      [class.gforge-tabs__panel--active]="isTabActive(tab)"
+      [attr.id]="'tab-content-' + tab.id"
+      [attr.aria-labelledby]="'tab-' + tab.id"
+      role="tabpanel"
+      [attr.hidden]="!isTabActive(tab)"
+    >
+      <div 
+        *ngIf="shouldRenderTabContent(tab)"
+        class="gforge-tabs__panel-content"
+      >
+        <!-- Default content from tab.content -->
+        <div 
+          *ngIf="tab.content && isTabActive(tab)"
+          [innerHTML]="tab.content"
+        ></div>
+
+        <!-- Projected content -->
+        <ng-container *ngIf="isTabActive(tab)">
+          <ng-content [select]="'[slot=tab-' + tab.id + ']'"></ng-content>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Default projected content -->
+  <ng-content></ng-content>
+</div>

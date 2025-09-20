@@ -1,0 +1,412 @@
+@import '../../styles/variables';
+
+:root {
+  --skeleton-base-color: #e2e8f0;
+  --skeleton-highlight-color: #f1f5f9;
+  --line-spacing: 0.5em;
+}
+
+.gforge-skeleton {
+  display: block;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+
+  // Animations
+  &--pulse {
+    animation: skeleton-pulse 2s ease-in-out infinite;
+  }
+
+  &--wave {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--skeleton-highlight-color),
+        transparent
+      );
+      animation: skeleton-wave 2s ease-in-out infinite;
+    }
+  }
+
+  &--none {
+    animation: none;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  // Animation speeds
+  &--slow {
+    animation-duration: 3s;
+
+    &::after {
+      animation-duration: 3s;
+    }
+  }
+
+  &--normal {
+    animation-duration: 2s;
+
+    &::after {
+      animation-duration: 2s;
+    }
+  }
+
+  &--fast {
+    animation-duration: 1s;
+
+    &::after {
+      animation-duration: 1s;
+    }
+  }
+
+  // Rounded
+  &--rounded {
+    border-radius: 8px;
+  }
+}
+
+// Text Skeleton
+.gforge-skeleton__text {
+  .gforge-skeleton__line {
+    background-color: var(--skeleton-base-color);
+    border-radius: 4px;
+    height: 1em;
+  }
+}
+
+// Shape Skeleton
+.gforge-skeleton__shape {
+  width: 100%;
+  height: 100%;
+  background-color: var(--skeleton-base-color);
+  border-radius: inherit;
+}
+
+// Card Skeleton
+.gforge-skeleton__card {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.gforge-skeleton__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gforge-skeleton__card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--skeleton-base-color);
+  flex-shrink: 0;
+}
+
+.gforge-skeleton__card-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gforge-skeleton__card-title {
+  height: 20px;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  width: 60%;
+}
+
+.gforge-skeleton__card-subtitle {
+  height: 16px;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+  width: 40%;
+}
+
+.gforge-skeleton__card-content {
+  .gforge-skeleton__card-line {
+    height: 16px;
+    background-color: var(--skeleton-base-color);
+    border-radius: 4px;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// List Skeleton
+.gforge-skeleton__list {
+  .gforge-skeleton__list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.gforge-skeleton__list-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--skeleton-base-color);
+  flex-shrink: 0;
+}
+
+.gforge-skeleton__list-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.gforge-skeleton__list-primary {
+  height: 18px;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  width: 70%;
+}
+
+.gforge-skeleton__list-secondary {
+  height: 14px;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+  width: 50%;
+}
+
+// Table Skeleton
+.gforge-skeleton__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gforge-skeleton__table-row {
+  display: flex;
+  border-bottom: 1px solid #f1f5f9;
+
+  &--header {
+    background-color: #f8fafc;
+    
+    .gforge-skeleton__table-cell {
+      height: 24px;
+      background-color: var(--skeleton-highlight-color);
+    }
+  }
+}
+
+.gforge-skeleton__table-cell {
+  flex: 1;
+  height: 20px;
+  background-color: var(--skeleton-base-color);
+  border-radius: 4px;
+  margin: 8px 4px;
+
+  &:first-child {
+    margin-left: 8px;
+  }
+
+  &:last-child {
+    margin-right: 8px;
+  }
+}
+
+// Custom skeleton
+.gforge-skeleton__custom {
+  .gforge-skeleton__element {
+    background-color: var(--skeleton-base-color);
+    border-radius: 4px;
+  }
+}
+
+// Animations
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// Wave animation for child elements
+.gforge-skeleton--wave {
+  .gforge-skeleton__line,
+  .gforge-skeleton__shape,
+  .gforge-skeleton__card-avatar,
+  .gforge-skeleton__card-title,
+  .gforge-skeleton__card-subtitle,
+  .gforge-skeleton__card-line,
+  .gforge-skeleton__list-avatar,
+  .gforge-skeleton__list-primary,
+  .gforge-skeleton__list-secondary,
+  .gforge-skeleton__table-cell {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--skeleton-highlight-color),
+        transparent
+      );
+      animation: skeleton-wave inherit;
+    }
+  }
+}
+
+// Pulse animation for child elements
+.gforge-skeleton--pulse {
+  .gforge-skeleton__line,
+  .gforge-skeleton__shape,
+  .gforge-skeleton__card-avatar,
+  .gforge-skeleton__card-title,
+  .gforge-skeleton__card-subtitle,
+  .gforge-skeleton__card-line,
+  .gforge-skeleton__list-avatar,
+  .gforge-skeleton__list-primary,
+  .gforge-skeleton__list-secondary,
+  .gforge-skeleton__table-cell {
+    animation: skeleton-pulse inherit;
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skeleton-base-color: #374151;
+    --skeleton-highlight-color: #4b5563;
+  }
+
+  .gforge-skeleton__card {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .gforge-skeleton__list-item {
+    border-color: #374151;
+  }
+
+  .gforge-skeleton__table-row {
+    border-color: #374151;
+
+    &--header {
+      background-color: #111827;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  :root {
+    --skeleton-base-color: #6b7280;
+    --skeleton-highlight-color: #9ca3af;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .gforge-skeleton--pulse,
+  .gforge-skeleton--wave {
+    animation: none;
+
+    &::after {
+      display: none;
+    }
+
+    .gforge-skeleton__line,
+    .gforge-skeleton__shape,
+    .gforge-skeleton__card-avatar,
+    .gforge-skeleton__card-title,
+    .gforge-skeleton__card-subtitle,
+    .gforge-skeleton__card-line,
+    .gforge-skeleton__list-avatar,
+    .gforge-skeleton__list-primary,
+    .gforge-skeleton__list-secondary,
+    .gforge-skeleton__table-cell {
+      animation: none;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .gforge-skeleton__card {
+    padding: 12px;
+  }
+
+  .gforge-skeleton__card-header {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .gforge-skeleton__card-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .gforge-skeleton__list-item {
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .gforge-skeleton__list-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .gforge-skeleton__table-cell {
+    margin: 6px 2px;
+
+    &:first-child {
+      margin-left: 4px;
+    }
+
+    &:last-child {
+      margin-right: 4px;
+    }
+  }
+}

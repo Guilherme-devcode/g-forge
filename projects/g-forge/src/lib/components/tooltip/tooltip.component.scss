@@ -1,0 +1,286 @@
+@import '../../styles/variables';
+
+.gforge-tooltip-trigger {
+  display: inline-block;
+}
+
+.gforge-tooltip {
+  position: absolute;
+  z-index: 9999;
+  font-size: 14px;
+  line-height: 1.4;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  pointer-events: none;
+
+  &--animated {
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+
+  // Themes
+  &--dark {
+    background-color: #333;
+    color: white;
+
+    .gforge-tooltip__arrow {
+      border-color: #333;
+    }
+  }
+
+  &--light {
+    background-color: white;
+    color: $font-color;
+    border: 1px solid $border-color;
+
+    .gforge-tooltip__arrow {
+      border-color: white;
+      
+      &::before {
+        border-color: $border-color;
+      }
+    }
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+
+    .gforge-tooltip__arrow {
+      border-color: $primary-color;
+    }
+  }
+
+  &--danger {
+    background-color: $danger-color;
+    color: white;
+
+    .gforge-tooltip__arrow {
+      border-color: $danger-color;
+    }
+  }
+
+  &--warning {
+    background-color: #ffc107;
+    color: #333;
+
+    .gforge-tooltip__arrow {
+      border-color: #ffc107;
+    }
+  }
+
+  &--success {
+    background-color: $success-color;
+    color: white;
+
+    .gforge-tooltip__arrow {
+      border-color: $success-color;
+    }
+  }
+}
+
+.gforge-tooltip__content {
+  padding: 8px 12px;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  // Estilo para conteúdo HTML
+  :deep(p) {
+    margin: 0 0 4px 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :deep(strong) {
+    font-weight: 600;
+  }
+
+  :deep(code) {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+}
+
+.gforge-tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+  }
+}
+
+// Arrow positioning
+.gforge-tooltip[data-position="top"],
+.gforge-tooltip[data-position="top-left"],
+.gforge-tooltip[data-position="top-right"] {
+  .gforge-tooltip__arrow {
+    bottom: -12px;
+    border-top-color: inherit;
+    border-bottom: none;
+
+    &::before {
+      bottom: 1px;
+      left: -7px;
+      border-top-color: inherit;
+      border-bottom: none;
+    }
+  }
+}
+
+.gforge-tooltip[data-position="top"] .gforge-tooltip__arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gforge-tooltip[data-position="top-left"] .gforge-tooltip__arrow {
+  left: 16px;
+}
+
+.gforge-tooltip[data-position="top-right"] .gforge-tooltip__arrow {
+  right: 16px;
+}
+
+.gforge-tooltip[data-position="bottom"],
+.gforge-tooltip[data-position="bottom-left"],
+.gforge-tooltip[data-position="bottom-right"] {
+  .gforge-tooltip__arrow {
+    top: -12px;
+    border-bottom-color: inherit;
+    border-top: none;
+
+    &::before {
+      top: 1px;
+      left: -7px;
+      border-bottom-color: inherit;
+      border-top: none;
+    }
+  }
+}
+
+.gforge-tooltip[data-position="bottom"] .gforge-tooltip__arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gforge-tooltip[data-position="bottom-left"] .gforge-tooltip__arrow {
+  left: 16px;
+}
+
+.gforge-tooltip[data-position="bottom-right"] .gforge-tooltip__arrow {
+  right: 16px;
+}
+
+.gforge-tooltip[data-position="left"] {
+  .gforge-tooltip__arrow {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: inherit;
+    border-right: none;
+
+    &::before {
+      right: 1px;
+      top: -7px;
+      border-left-color: inherit;
+      border-right: none;
+    }
+  }
+}
+
+.gforge-tooltip[data-position="right"] {
+  .gforge-tooltip__arrow {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: inherit;
+    border-left: none;
+
+    &::before {
+      left: 1px;
+      top: -7px;
+      border-right-color: inherit;
+      border-left: none;
+    }
+  }
+}
+
+// Animation states
+.gforge-tooltip--animated {
+  &[data-position="top"],
+  &[data-position="top-left"],
+  &[data-position="top-right"] {
+    transform: translateY(-4px);
+  }
+
+  &[data-position="bottom"],
+  &[data-position="bottom-left"],
+  &[data-position="bottom-right"] {
+    transform: translateY(4px);
+  }
+
+  &[data-position="left"] {
+    transform: translateX(-4px);
+  }
+
+  &[data-position="right"] {
+    transform: translateX(4px);
+  }
+}
+
+// Hover states for interactive tooltips
+.gforge-tooltip {
+  &:hover {
+    pointer-events: auto;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .gforge-tooltip {
+    max-width: calc(100vw - 32px);
+    font-size: 13px;
+  }
+
+  .gforge-tooltip__content {
+    padding: 6px 10px;
+  }
+
+  .gforge-tooltip__arrow {
+    border-width: 5px;
+
+    &::before {
+      border-width: 6px;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .gforge-tooltip--light {
+    border-width: 2px;
+  }
+
+  .gforge-tooltip--dark {
+    border: 1px solid white;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .gforge-tooltip--animated {
+    transition: none;
+    transform: none;
+  }
+}

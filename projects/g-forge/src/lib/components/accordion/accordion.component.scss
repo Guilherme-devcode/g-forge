@@ -1,0 +1,235 @@
+@import '../../styles/variables';
+
+.gforge-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  // Variants
+  &--default {
+    .gforge-accordion__item {
+      border: 1px solid $border-color;
+      margin-bottom: 4px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+
+  &--bordered {
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .gforge-accordion__item {
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &--filled {
+    .gforge-accordion__item {
+      background-color: #f8f9fa;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      overflow: hidden;
+
+      .gforge-accordion__header {
+        background-color: #e9ecef;
+      }
+    }
+  }
+
+  &--minimal {
+    .gforge-accordion__item {
+      border-bottom: 1px solid #e9ecef;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .gforge-accordion__header {
+        padding: 12px 0;
+      }
+    }
+  }
+
+  // Sizes
+  &--small {
+    .gforge-accordion__header {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    .gforge-accordion__content-inner {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+
+  &--medium {
+    .gforge-accordion__header {
+      padding: 12px 16px;
+      font-size: 16px;
+    }
+
+    .gforge-accordion__content-inner {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+  }
+
+  &--large {
+    .gforge-accordion__header {
+      padding: 16px 20px;
+      font-size: 18px;
+    }
+
+    .gforge-accordion__content-inner {
+      padding: 16px 20px;
+      font-size: 16px;
+    }
+  }
+
+  // Animation
+  &--animated {
+    .gforge-accordion__content {
+      transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    }
+
+    .gforge-accordion__icon {
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+
+.gforge-accordion__item {
+  background-color: white;
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .gforge-accordion__header {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.gforge-accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  user-select: none;
+
+  &:hover:not(&--disabled) {
+    background-color: rgba($primary-color, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: -2px;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}
+
+.gforge-accordion__title {
+  font-weight: 600;
+  color: $font-color;
+  flex: 1;
+  text-align: left;
+}
+
+.gforge-accordion__icon {
+  color: $primary-color;
+  font-size: 12px;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+
+  &--expanded {
+    transform: rotate(180deg);
+  }
+}
+
+.gforge-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+
+  &--expanded {
+    max-height: 1000px; // Valor alto para permitir conteúdo dinâmico
+    opacity: 1;
+  }
+}
+
+.gforge-accordion__content-inner {
+  color: $font-color;
+  line-height: 1.6;
+  background-color: white;
+
+  // Estilo para conteúdo HTML
+  :deep(h1), :deep(h2), :deep(h3), :deep(h4), :deep(h5), :deep(h6) {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: $font-color;
+  }
+
+  :deep(p) {
+    margin: 0 0 8px 0;
+  }
+
+  :deep(ul), :deep(ol) {
+    margin: 0 0 8px 16px;
+  }
+
+  :deep(code) {
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  :deep(pre) {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 8px 0;
+  }
+}
+
+// Estados de hover e focus
+.gforge-accordion__item:not(.gforge-accordion__item--disabled) {
+  .gforge-accordion__header:hover {
+    .gforge-accordion__title {
+      color: $primary-color;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .gforge-accordion {
+    &--small .gforge-accordion__header {
+      padding: 6px 8px;
+    }
+
+    &--medium .gforge-accordion__header {
+      padding: 8px 12px;
+    }
+
+    &--large .gforge-accordion__header {
+      padding: 12px 16px;
+    }
+  }
+}

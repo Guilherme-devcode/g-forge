@@ -1,0 +1,64 @@
+<div
+  [class]="avatarClass"
+  [ngStyle]="avatarStyle"
+  [attr.aria-label]="alt"
+  [attr.role]="clickable ? 'button' : 'img'"
+  [attr.tabindex]="clickable && !disabled ? 0 : null"
+  (click)="onClick($event)"
+  (keydown.enter)="onClick($event)"
+  (keydown.space)="$event.preventDefault(); onClick($event)"
+>
+  <!-- Avatar Content -->
+  <div class="gforge-avatar__content" [ngStyle]="contentStyle">
+    <!-- Image -->
+    <img
+      *ngIf="shouldShowImage"
+      [src]="src"
+      [alt]="alt"
+      class="gforge-avatar__image"
+      (error)="onImageError($event)"
+      (load)="onImageLoad($event)"
+    />
+
+    <!-- Initials -->
+    <span
+      *ngIf="shouldShowInitials"
+      class="gforge-avatar__initials"
+    >
+      {{ initials }}
+    </span>
+
+    <!-- Default Icon -->
+    <span
+      *ngIf="shouldShowDefaultIcon"
+      class="gforge-avatar__icon"
+      [innerHTML]="defaultIcon"
+    ></span>
+  </div>
+
+  <!-- Status Indicator -->
+  <div
+    *ngIf="shouldShowStatus"
+    [class]="statusClass"
+    [ngStyle]="statusStyle"
+    [attr.title]="status"
+  ></div>
+
+  <!-- Badge -->
+  <div
+    *ngIf="shouldShowBadge"
+    [class]="badgeClass"
+    [ngStyle]="badgeStyle"
+    [attr.title]="'Badge: ' + badge"
+  >
+    <span class="gforge-avatar__badge-content">{{ badge }}</span>
+  </div>
+
+  <!-- Loading State -->
+  <div
+    *ngIf="src && !shouldShowImage && !imageLoadError"
+    class="gforge-avatar__loading"
+  >
+    <div class="gforge-avatar__spinner"></div>
+  </div>
+</div>

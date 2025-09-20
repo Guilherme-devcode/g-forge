@@ -1,0 +1,49 @@
+<div [class]="accordionClass">
+  <div 
+    *ngFor="let item of items; trackBy: trackByFn" 
+    [class]="getItemClass(item)"
+  >
+    <!-- Header -->
+    <div 
+      class="gforge-accordion__header"
+      [class.gforge-accordion__header--disabled]="item.disabled"
+      (click)="toggleItem(item)"
+      [attr.aria-expanded]="item.expanded"
+      [attr.aria-controls]="'accordion-content-' + item.id"
+      role="button"
+      [tabindex]="item.disabled ? -1 : 0"
+      (keydown.enter)="toggleItem(item)"
+      (keydown.space)="$event.preventDefault(); toggleItem(item)"
+    >
+      <span class="gforge-accordion__title">{{ item.title }}</span>
+      <span 
+        class="gforge-accordion__icon"
+        [class.gforge-accordion__icon--expanded]="item.expanded"
+      >
+        {{ getItemIcon(item) }}
+      </span>
+    </div>
+
+    <!-- Content -->
+    <div 
+      class="gforge-accordion__content"
+      [class.gforge-accordion__content--expanded]="item.expanded"
+      [attr.id]="'accordion-content-' + item.id"
+      [attr.aria-hidden]="!item.expanded"
+      role="region"
+    >
+      <div class="gforge-accordion__content-inner">
+        <ng-container [ngSwitch]="true">
+          <!-- Content as HTML string -->
+          <div 
+            *ngSwitchDefault
+            [innerHTML]="item.content"
+          ></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slot for custom content -->
+  <ng-content></ng-content>
+</div>

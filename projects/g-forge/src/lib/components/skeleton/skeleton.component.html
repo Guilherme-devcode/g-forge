@@ -1,0 +1,77 @@
+<div *ngIf="loading; else contentTemplate" [class]="skeletonClass" [ngStyle]="skeletonStyle">
+
+  <!-- Text Skeleton -->
+  <div *ngIf="variant === 'text'" class="gforge-skeleton__text">
+    <div
+      *ngFor="let line of textLines; trackBy: trackByIndex"
+      class="gforge-skeleton__line"
+      [ngStyle]="getLineStyle(line)"
+    ></div>
+  </div>
+
+  <!-- Circular/Avatar Skeleton -->
+  <div *ngIf="variant === 'circular' || variant === 'avatar'" class="gforge-skeleton__shape"></div>
+
+  <!-- Rectangular/Rounded Skeleton -->
+  <div *ngIf="variant === 'rectangular' || variant === 'rounded'" class="gforge-skeleton__shape"></div>
+
+  <!-- Card Skeleton -->
+  <div *ngIf="variant === 'card'" class="gforge-skeleton__card">
+    <!-- Card Header -->
+    <div class="gforge-skeleton__card-header">
+      <div *ngIf="cardConfig.showAvatar" class="gforge-skeleton__card-avatar"></div>
+      <div class="gforge-skeleton__card-header-content">
+        <div *ngIf="cardConfig.showTitle" class="gforge-skeleton__card-title"></div>
+        <div *ngIf="cardConfig.showSubtitle" class="gforge-skeleton__card-subtitle"></div>
+      </div>
+    </div>
+    
+    <!-- Card Content -->
+    <div *ngIf="cardConfig.showContent" class="gforge-skeleton__card-content">
+      <div
+        *ngFor="let item of Array(cardConfig.contentLines); trackBy: trackByIndex"
+        class="gforge-skeleton__card-line"
+        [style.width]="item === cardConfig.contentLines - 1 ? '65%' : '100%'"
+      ></div>
+    </div>
+  </div>
+
+  <!-- List Skeleton -->
+  <div *ngIf="variant === 'list'" class="gforge-skeleton__list">
+    <div
+      *ngFor="let item of listItems; trackBy: trackByIndex"
+      class="gforge-skeleton__list-item"
+    >
+      <div *ngIf="listConfig.showAvatar" class="gforge-skeleton__list-avatar"></div>
+      <div class="gforge-skeleton__list-content">
+        <div class="gforge-skeleton__list-primary"></div>
+        <div *ngIf="listConfig.showSecondaryText" class="gforge-skeleton__list-secondary"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Skeleton -->
+  <div *ngIf="variant === 'table'" class="gforge-skeleton__table">
+    <div
+      *ngFor="let row of tableRows; trackBy: trackByIndex"
+      class="gforge-skeleton__table-row"
+      [class.gforge-skeleton__table-row--header]="isTableHeader(row)"
+    >
+      <div
+        *ngFor="let col of tableColumns; trackBy: trackByIndex"
+        class="gforge-skeleton__table-cell"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Custom Skeleton -->
+  <div *ngIf="variant === 'custom'" class="gforge-skeleton__custom">
+    <ng-content select="[slot=skeleton]"></ng-content>
+  </div>
+
+</div>
+
+<!-- Content Template -->
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

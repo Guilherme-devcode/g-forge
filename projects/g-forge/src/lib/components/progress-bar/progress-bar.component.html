@@ -1,0 +1,70 @@
+<div [class]="progressClass" role="progressbar" [attr.aria-valuenow]="value" [attr.aria-valuemin]="min" [attr.aria-valuemax]="max">
+  <!-- Texto externo (acima/esquerda) -->
+  <div *ngIf="shouldShowText && textPosition === 'outside'" [class]="textClass">
+    {{ formattedValue }}
+  </div>
+
+  <!-- Container da barra -->
+  <div class="gforge-progress__container">
+    <!-- Barra de buffer -->
+    <div
+      *ngIf="showBuffer"
+      class="gforge-progress__buffer"
+      [ngStyle]="bufferBarStyle"
+    ></div>
+
+    <!-- Barra de progresso simples -->
+    <div
+      *ngIf="segments.length === 0"
+      class="gforge-progress__bar"
+      [ngStyle]="progressBarStyle"
+    >
+      <!-- Texto interno -->
+      <span
+        *ngIf="shouldShowText && isTextInside && hasEnoughProgressForText"
+        [class]="textClass"
+      >
+        {{ formattedValue }}
+      </span>
+    </div>
+
+    <!-- Barras segmentadas -->
+    <div *ngIf="segments.length > 0" class="gforge-progress__segments">
+      <div
+        *ngFor="let segment of segments; trackBy: trackByFn"
+        class="gforge-progress__segment"
+        [ngStyle]="getSegmentStyle(segment)"
+        [title]="segment.label || ''"
+      >
+        <span
+          *ngIf="segment.label && getSegmentWidth(segment) > 10"
+          class="gforge-progress__segment-label"
+        >
+          {{ segment.label }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Texto centralizado (sobreposto) -->
+    <div
+      *ngIf="shouldShowText && textPosition === 'center' && (!isTextInside || !hasEnoughProgressForText)"
+      class="gforge-progress__text gforge-progress__text--center-overlay"
+    >
+      {{ formattedValue }}
+    </div>
+  </div>
+
+  <!-- Indicadores de segmentos (legenda) -->
+  <div *ngIf="segments.length > 0 && segments.some(s => s.label)" class="gforge-progress__legend">
+    <div
+      *ngFor="let segment of segments; trackBy: trackByFn"
+      class="gforge-progress__legend-item"
+    >
+      <div
+        class="gforge-progress__legend-color"
+        [style.backgroundColor]="segment.color || 'var(--progress-color)'"
+      ></div>
+      <span class="gforge-progress__legend-label">{{ segment.label }}</span>
+    </div>
+  </div>
+</div>
