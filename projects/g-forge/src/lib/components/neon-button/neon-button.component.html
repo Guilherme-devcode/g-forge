@@ -1,0 +1,20 @@
+<button 
+  [class]="buttonClass" 
+  [ngStyle]="customStyle"
+  [disabled]="disabled"
+  (click)="onClick($event)">
+  
+  <!-- Scan line effect -->
+  <div class="gforge-neon-button__scan-line" *ngIf="scanLine"></div>
+  
+  <!-- Botão content -->
+  <span class="gforge-neon-button__content">
+    <ng-content>
+      <span *ngIf="label">{{ label }}</span>
+    </ng-content>
+  </span>
+  
+  <!-- Glow layers -->
+  <div class="gforge-neon-button__glow gforge-neon-button__glow--outer"></div>
+  <div class="gforge-neon-button__glow gforge-neon-button__glow--inner"></div>
+</button>

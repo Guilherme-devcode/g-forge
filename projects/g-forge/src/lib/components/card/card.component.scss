@@ -1,0 +1,125 @@
+@import '../../styles/variables';
+
+.gforge-card {
+  border-radius: 8px;
+  background: white;
+  color: $font-color;
+  font-family: $font-family;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &--basic {
+    border: 1px solid $border-color;
+  }
+
+  &--elevated {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+
+  &--outlined {
+    border: 2px solid $primary-color;
+    background: transparent;
+  }
+
+  &--small {
+    .gforge-card__header {
+      padding: 12px 16px 8px 16px;
+    }
+    .gforge-card__content {
+      padding: 0 16px 16px 16px;
+    }
+    .gforge-card__title {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .gforge-card__subtitle {
+      font-size: 12px;
+    }
+  }
+
+  &--medium {
+    .gforge-card__header {
+      padding: 16px 20px 12px 20px;
+    }
+    .gforge-card__content {
+      padding: 0 20px 20px 20px;
+    }
+    .gforge-card__title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .gforge-card__subtitle {
+      font-size: 14px;
+    }
+  }
+
+  &--large {
+    .gforge-card__header {
+      padding: 20px 24px 16px 24px;
+    }
+    .gforge-card__content {
+      padding: 0 24px 24px 24px;
+    }
+    .gforge-card__title {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .gforge-card__subtitle {
+      font-size: 16px;
+    }
+  }
+
+  &--clickable {
+    cursor: pointer;
+    
+    &:hover:not(.gforge-card--disabled) {
+      transform: translateY(-2px);
+      
+      &.gforge-card--basic {
+        border-color: $primary-color;
+      }
+      
+      &.gforge-card--elevated {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      }
+      
+      &.gforge-card--outlined {
+        background: rgba($primary-color, 0.05);
+      }
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__header {
+    border-bottom: 1px solid lighten($border-color, 5%);
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    color: $font-color;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: lighten($font-color, 20%);
+    font-weight: 400;
+  }
+
+  &__content {
+    line-height: 1.6;
+  }
+
+  &__actions {
+    padding: 16px 20px;
+    border-top: 1px solid lighten($border-color, 5%);
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+}

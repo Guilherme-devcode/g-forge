@@ -1,0 +1,26 @@
+<div [class]="cardClass" [ngStyle]="customStyle">
+  <!-- Background decorativo -->
+  <div class="gforge-glass-card__bg-decoration"></div>
+  
+  <!-- Conteúdo do card -->
+  <div class="gforge-glass-card__content">
+    <!-- Cabeçalho -->
+    <div class="gforge-glass-card__header" *ngIf="title || subtitle">
+      <h3 class="gforge-glass-card__title" *ngIf="title">{{ title }}</h3>
+      <p class="gforge-glass-card__subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+    </div>
+    
+    <!-- Conteúdo principal -->
+    <div class="gforge-glass-card__body">
+      <ng-content></ng-content>
+    </div>
+    
+    <!-- Área de ações -->
+    <div class="gforge-glass-card__actions" *ngIf="hasActions()">
+      <ng-content select="[slot=actions]"></ng-content>
+    </div>
+  </div>
+
+  <!-- Overlay para efeitos especiais -->
+  <div class="gforge-glass-card__overlay"></div>
+</div>

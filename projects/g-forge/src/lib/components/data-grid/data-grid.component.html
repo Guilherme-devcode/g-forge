@@ -1,0 +1,172 @@
+<div [class]="gridClass">
+  <!-- Barra de ferramentas -->
+  <div class="gforge-data-grid__toolbar" *ngIf="config.filtering?.globalSearch">
+    <div class="gforge-data-grid__search">
+      <gforge-input-text
+        placeholder="Pesquisar..."
+        [value]="globalSearchTerm"
+        (valueChanged)="onGlobalSearch($event)">
+      </gforge-input-text>
+    </div>
+    
+    <div class="gforge-data-grid__actions">
+      <ng-content select="[slot=toolbar]"></ng-content>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="gforge-data-grid__loading" *ngIf="loading">
+    <div class="gforge-data-grid__spinner"></div>
+    <span>Carregando...</span>
+  </div>
+
+  <!-- Tabela principal -->
+  <div class="gforge-data-grid__container">
+    <table class="gforge-data-grid__table">
+      <thead class="gforge-data-grid__header">
+        <tr>
+          <!-- Checkbox para seleção múltipla -->
+          <th *ngIf="config.selection?.multiple" class="gforge-data-grid__cell gforge-data-grid__cell--selection">
+            <input type="checkbox" 
+              [checked]="selectedRows.length === paginatedData.length && paginatedData.length > 0"
+              [indeterminate]="selectedRows.length > 0 && selectedRows.length < paginatedData.length"
+              (change)="toggleAllRows()">
+          </th>
+          
+          <!-- Colunas -->
+          <th *ngFor="let column of columns" 
+              class="gforge-data-grid__cell gforge-data-grid__cell--header"
+              [style.width]="column.width">
+            
+            <div class="gforge-data-grid__header-content">
+              <span class="gforge-data-grid__header-title">{{ column.title }}</span>
+              
+              <!-- Botão de ordenação -->
+              <button *ngIf="column.sortable && config.sorting?.enabled"
+                      class="gforge-data-grid__sort-button"
+                      [class.gforge-data-grid__sort-button--active]="sortColumn === column.key"
+                      (click)="sortByColumn(column)">
+                <svg class="gforge-data-grid__sort-icon" 
+                     [class.gforge-data-grid__sort-icon--desc]="sortColumn === column.key && sortDirection === 'desc'"
+                     viewBox="0 0 24 24">
+                  <path d="M7 14l5-5 5 5H7z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Filtro por coluna -->
+            <div *ngIf="column.filterable && config.filtering?.enabled" 
+                 class="gforge-data-grid__column-filter">
+              <input type="text" 
+                     class="gforge-data-grid__filter-input"
+                     [placeholder]="'Filtrar ' + column.title"
+                     [value]="columnFilters[column.key] || ''"
+                     (input)="filterByColumn(column, $any($event.target).value)">
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="gforge-data-grid__body">
+        <tr *ngFor="let row of paginatedData; let i = index; trackBy: trackByFn"
+            class="gforge-data-grid__row"
+            [class.gforge-data-grid__row--selected]="isRowSelected(row)"
+            [class.gforge-data-grid__row--even]="i % 2 === 0"
+            [class.gforge-data-grid__row--odd]="i % 2 === 1">
+          
+          <!-- Checkbox de seleção -->
+          <td *ngIf="config.selection?.multiple" class="gforge-data-grid__cell gforge-data-grid__cell--selection">
+            <input type="checkbox" 
+                   [checked]="isRowSelected(row)"
+                   (change)="selectRow(row)">
+          </td>
+
+          <!-- Células de dados -->
+          <td *ngFor="let column of columns" 
+              class="gforge-data-grid__cell"
+              [class.gforge-data-grid__cell--clickable]="config.selection?.enabled && !config.selection?.multiple"
+              (click)="config.selection?.enabled && !config.selection?.multiple && selectRow(row)">
+            
+            <!-- Conteúdo da célula baseado no tipo -->
+            <div class="gforge-data-grid__cell-content" [ngSwitch]="column.type">
+              
+              <!-- Texto padrão -->
+              <span *ngSwitchDefault>{{ formatCellValue(row, column) }}</span>
+              
+              <!-- Boolean -->
+              <span *ngSwitchCase="'boolean'" class="gforge-data-grid__boolean">
+                <svg *ngIf="row[column.key]" class="gforge-data-grid__check-icon" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <svg *ngIf="!row[column.key]" class="gforge-data-grid__x-icon" viewBox="0 0 24 24">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+              </span>
+              
+              <!-- Ações -->
+              <div *ngSwitchCase="'actions'" class="gforge-data-grid__actions-cell">
+                <gforge-button *ngFor="let action of column.actions"
+                              [label]="action.label"
+                              [variant]="action.variant || 'secondary'"
+                              size="small"
+                              (clicked)="action.action(row)">
+                </gforge-button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Estado vazio -->
+    <div *ngIf="paginatedData.length === 0 && !loading" class="gforge-data-grid__empty">
+      <div class="gforge-data-grid__empty-icon">📊</div>
+      <h3>Nenhum dado encontrado</h3>
+      <p>Não há registros para exibir com os filtros aplicados.</p>
+    </div>
+  </div>
+
+  <!-- Paginação -->
+  <div *ngIf="config.pagination?.enabled && totalPages > 1" class="gforge-data-grid__pagination">
+    <div class="gforge-data-grid__pagination-info">
+      <span>Mostrando {{ (currentPage - 1) * config.pagination!.pageSize + 1 }} - 
+            {{ Math.min(currentPage * config.pagination!.pageSize, filteredData.length) }} 
+            de {{ filteredData.length }} registros</span>
+    </div>
+
+    <div class="gforge-data-grid__pagination-controls">
+      <!-- Seletor de tamanho de página -->
+      <select class="gforge-data-grid__page-size" 
+              [value]="config.pagination!.pageSize"
+              (change)="changePageSize(+$any($event.target).value)">
+        <option *ngFor="let size of config.pagination!.pageSizeOptions" [value]="size">
+          {{ size }} por página
+        </option>
+      </select>
+
+      <!-- Navegação de páginas -->
+      <div class="gforge-data-grid__page-nav">
+        <gforge-button label="‹" 
+                      variant="secondary" 
+                      size="small"
+                      [disabled]="currentPage === 1"
+                      (clicked)="goToPage(currentPage - 1)">
+        </gforge-button>
+
+        <gforge-button *ngFor="let page of pageNumbers"
+                      [label]="page.toString()"
+                      [variant]="page === currentPage ? 'primary' : 'secondary'"
+                      size="small"
+                      (clicked)="goToPage(page)">
+        </gforge-button>
+
+        <gforge-button label="›" 
+                      variant="secondary" 
+                      size="small"
+                      [disabled]="currentPage === totalPages"
+                      (clicked)="goToPage(currentPage + 1)">
+        </gforge-button>
+      </div>
+    </div>
+  </div>
+</div>

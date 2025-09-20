@@ -1,0 +1,26 @@
+<span [class]="badgeClass" [ngStyle]="customStyle">
+  
+  <!-- Ícone -->
+  <span class="gforge-badge__icon" *ngIf="icon">
+    {{ icon }}
+  </span>
+  
+  <!-- Conteúdo -->
+  <span class="gforge-badge__content" *ngIf="label !== null">
+    {{ label }}
+  </span>
+  
+  <!-- Conteúdo customizado -->
+  <ng-content *ngIf="label === null"></ng-content>
+  
+  <!-- Botão de remover -->
+  <button 
+    class="gforge-badge__remove" 
+    *ngIf="removable"
+    (click)="onRemove()"
+    type="button"
+    aria-label="Remover badge">
+    ×
+  </button>
+  
+</span>

@@ -1,0 +1,154 @@
+@import '../../styles/variables';
+
+.gforge-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: $font-family;
+  color: $font-color;
+  user-select: none;
+  position: relative;
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $border-color;
+    border-radius: 4px;
+    background: white;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  &--small &__checkmark {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--medium &__checkmark {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--large &__checkmark {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon {
+    position: absolute;
+    color: white;
+    
+    &--check,
+    &--indeterminate {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &--small &__icon {
+    &--check,
+    &--indeterminate {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &--large &__icon {
+    &--check,
+    &--indeterminate {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__label {
+    margin-left: 8px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  &--small &__label {
+    font-size: 14px;
+    margin-left: 6px;
+  }
+
+  &--medium &__label {
+    font-size: 16px;
+  }
+
+  &--large &__label {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  // Estados e variantes
+  &--primary {
+    &.gforge-checkbox--checked &__checkmark,
+    &.gforge-checkbox--indeterminate &__checkmark {
+      background: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  &--secondary {
+    &.gforge-checkbox--checked &__checkmark,
+    &.gforge-checkbox--indeterminate &__checkmark {
+      background: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
+
+  &--danger {
+    &.gforge-checkbox--checked &__checkmark,
+    &.gforge-checkbox--indeterminate &__checkmark {
+      background: $danger-color;
+      border-color: $danger-color;
+    }
+  }
+
+  // Hover states
+  &:hover:not(&--disabled) {
+    &.gforge-checkbox--primary &__checkmark {
+      border-color: $primary-color;
+    }
+
+    &.gforge-checkbox--secondary &__checkmark {
+      border-color: $secondary-color;
+    }
+
+    &.gforge-checkbox--danger &__checkmark {
+      border-color: $danger-color;
+    }
+  }
+
+  // Focus states
+  &__input:focus + &__checkmark {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &--disabled {
+    &__checkmark {
+      background: lighten($border-color, 10%);
+      border-color: $border-color;
+    }
+
+    &__label {
+      color: lighten($font-color, 30%);
+    }
+  }
+}

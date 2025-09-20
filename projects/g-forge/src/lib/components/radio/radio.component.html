@@ -1,0 +1,24 @@
+<div [class]="containerClass" role="radiogroup">
+  <label 
+    *ngFor="let option of options; trackBy: trackByFn" 
+    [class]="getRadioClass(option)"
+    [attr.aria-disabled]="disabled || option.disabled">
+    
+    <input
+      type="radio"
+      class="gforge-radio__input"
+      [name]="name"
+      [value]="option.value"
+      [checked]="isSelected(option)"
+      [disabled]="disabled || option.disabled"
+      (change)="selectOption(option)"
+      [attr.aria-label]="option.label"
+    />
+    
+    <span class="gforge-radio__button">
+      <span class="gforge-radio__dot" *ngIf="isSelected(option)"></span>
+    </span>
+    
+    <span class="gforge-radio__label">{{ option.label }}</span>
+  </label>
+</div>
