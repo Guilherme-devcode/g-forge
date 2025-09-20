@@ -1,0 +1,43 @@
+<div class="gforge-modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+  <div [class]="modalClass" role="dialog" aria-modal="true" [attr.aria-labelledby]="title ? 'modal-title' : null">
+    
+    <!-- Cabeçalho do Modal -->
+    <div class="gforge-modal__header" *ngIf="title || showCloseButton">
+      <h2 id="modal-title" class="gforge-modal__title" *ngIf="title">{{ title }}</h2>
+      <button 
+        class="gforge-modal__close-button" 
+        *ngIf="showCloseButton"
+        (click)="closeModal()"
+        aria-label="Fechar modal"
+        type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Conteúdo do Modal -->
+    <div class="gforge-modal__content">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Rodapé com botões de ação -->
+    <div class="gforge-modal__footer" *ngIf="showActionButtons">
+      <ng-content select="[slot=actions]"></ng-content>
+      <div class="gforge-modal__default-actions" *ngIf="!hasCustomActions()">
+        <gforge-button 
+          [label]="cancelButtonText" 
+          variant="secondary" 
+          (clicked)="onCancel()">
+        </gforge-button>
+        <gforge-button 
+          [label]="confirmButtonText" 
+          [variant]="confirmButtonVariant" 
+          (clicked)="onConfirm()">
+        </gforge-button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,188 @@
+@import '../../styles/variables';
+
+.gforge-radio-group {
+  display: flex;
+  gap: 12px;
+  font-family: $font-family;
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--small {
+    gap: 8px;
+  }
+
+  &--large {
+    gap: 16px;
+  }
+}
+
+.gforge-radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: $font-color;
+  user-select: none;
+  position: relative;
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $border-color;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  &--small &__button {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--medium &__button {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--large &__button {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__dot {
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  &--small &__dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  &--medium &__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  &--large &__dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  &__label {
+    margin-left: 8px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  &--small &__label {
+    font-size: 14px;
+    margin-left: 6px;
+  }
+
+  &--medium &__label {
+    font-size: 16px;
+  }
+
+  &--large &__label {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  // Estados e variantes
+  &--primary {
+    &.gforge-radio--selected {
+      .gforge-radio__button {
+        background: $primary-color;
+        border-color: $primary-color;
+      }
+      
+      .gforge-radio__dot {
+        background: white;
+      }
+    }
+  }
+
+  &--secondary {
+    &.gforge-radio--selected {
+      .gforge-radio__button {
+        background: $secondary-color;
+        border-color: $secondary-color;
+      }
+      
+      .gforge-radio__dot {
+        background: white;
+      }
+    }
+  }
+
+  &--danger {
+    &.gforge-radio--selected {
+      .gforge-radio__button {
+        background: $danger-color;
+        border-color: $danger-color;
+      }
+      
+      .gforge-radio__dot {
+        background: white;
+      }
+    }
+  }
+
+  // Hover states
+  &:hover:not(&--disabled) {
+    &.gforge-radio--primary .gforge-radio__button {
+      border-color: $primary-color;
+    }
+
+    &.gforge-radio--secondary .gforge-radio__button {
+      border-color: $secondary-color;
+    }
+
+    &.gforge-radio--danger .gforge-radio__button {
+      border-color: $danger-color;
+    }
+  }
+
+  // Focus states
+  &__input:focus + &__button {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &--disabled {
+    .gforge-radio__button {
+      background: lighten($border-color, 10%);
+      border-color: $border-color;
+    }
+
+    .gforge-radio__label {
+      color: lighten($font-color, 30%);
+    }
+
+    &.gforge-radio--selected .gforge-radio__dot {
+      background: lighten($font-color, 30%);
+    }
+  }
+}

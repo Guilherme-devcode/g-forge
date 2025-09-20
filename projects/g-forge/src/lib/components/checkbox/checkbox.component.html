@@ -1,0 +1,35 @@
+<label [class]="checkboxClass" [attr.aria-disabled]="disabled">
+  <input
+    type="checkbox"
+    class="gforge-checkbox__input"
+    [checked]="checked"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
+    (change)="toggle()"
+    [attr.aria-label]="label || 'Checkbox'"
+  />
+  
+  <span class="gforge-checkbox__checkmark">
+    <svg 
+      class="gforge-checkbox__icon gforge-checkbox__icon--check" 
+      *ngIf="checked && !indeterminate"
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="3">
+      <polyline points="20,6 9,17 4,12"></polyline>
+    </svg>
+    
+    <svg 
+      class="gforge-checkbox__icon gforge-checkbox__icon--indeterminate" 
+      *ngIf="indeterminate"
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="3">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </span>
+  
+  <span class="gforge-checkbox__label" *ngIf="label">{{ label }}</span>
+</label>

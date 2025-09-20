@@ -1,0 +1,14 @@
+<div [class]="cardClass" [attr.aria-disabled]="disabled">
+  <div class="gforge-card__header" *ngIf="title || subtitle">
+    <h3 class="gforge-card__title" *ngIf="title">{{ title }}</h3>
+    <p class="gforge-card__subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+  
+  <div class="gforge-card__content">
+    <ng-content></ng-content>
+  </div>
+  
+  <div class="gforge-card__actions" *ngIf="clickable">
+    <ng-content select="[slot=actions]"></ng-content>
+  </div>
+</div>
