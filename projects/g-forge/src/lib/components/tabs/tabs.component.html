@@ -1,0 +1,83 @@
+<div class="gf-tabs"
+     [class.scrollable]="scrollable"
+     [class.centered]="centered"
+     [class.full-width]="fullWidth"
+     [attr.data-variant]="variant"
+     [attr.data-color]="color"
+     [attr.data-size]="size">
+
+  <div class="tabs-header" 
+       [class.vertical]="variant === 'vertical'">
+    
+    <div #tabsContainer 
+         class="tabs-nav"
+         [class.scrollable]="scrollable">
+      
+      <div class="tab-item"
+           *ngFor="let tab of tabs"
+           [class.active]="tab.active"
+           [class.disabled]="tab.disabled"
+           [attr.data-tab-id]="tab.id"
+           (click)="selectTab(tab.id)"
+           (keydown)="onTabKeyDown($event, tab.id)"
+           tabindex="0"
+           role="tab"
+           [attr.aria-selected]="tab.active"
+           [attr.aria-disabled]="tab.disabled">
+        
+        <div class="tab-content">
+          <i *ngIf="tab.icon" [class]="tab.icon" class="tab-icon"></i>
+          <span class="tab-label">{{ tab.label }}</span>
+          <span *ngIf="tab.badge" class="tab-badge">{{ tab.badge }}</span>
+          
+          <button *ngIf="tab.closable" 
+                  class="tab-close"
+                  (click)="closeTab(tab.id, $event)"
+                  aria-label="Fechar aba">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="tab-ripple"></div>
+      </div>
+
+      <div #activeIndicator 
+           class="active-indicator"
+           [style.transform]="indicatorStyle.transform"
+           [style.width]="indicatorStyle.width"
+           [style.height]="indicatorStyle.height"
+           *ngIf="animated && variant !== 'cards'">
+      </div>
+    </div>
+
+    <div class="tabs-actions" *ngIf="scrollable">
+      <button class="scroll-button scroll-left" 
+              (click)="scrollTabs('left')"
+              aria-label="Rolar para esquerda">
+        <svg viewBox="0 0 24 24">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button>
+      <button class="scroll-button scroll-right" 
+              (click)="scrollTabs('right')"
+              aria-label="Rolar para direita">
+        <svg viewBox="0 0 24 24">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs-content"
+       [class.vertical]="variant === 'vertical'">
+    <div class="tab-panel"
+         *ngFor="let tab of tabs"
+         [class.active]="tab.active"
+         [attr.aria-hidden]="!tab.active"
+         role="tabpanel">
+      <ng-content select="gf-tab" *ngIf="tab.active"></ng-content>
+    </div>
+  </div>
+</div>

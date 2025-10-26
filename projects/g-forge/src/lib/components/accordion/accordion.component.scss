@@ -1,0 +1,305 @@
+@import '../../../styles/variables';
+
+.gf-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .accordion-item {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    transition: all 0.3s ease;
+
+    &:first-child {
+      border-top: 1px solid #e0e0e0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    &.expanded {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .accordion-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      background: white;
+      transition: all 0.3s ease;
+      outline: none;
+      overflow: hidden;
+
+      &:hover:not(.disabled) {
+        background: #f8f9fa;
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 0 2px rgba($primary-color, 0.2);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+
+        .header-icon {
+          font-size: 20px;
+          color: $primary-color;
+        }
+
+        .header-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        .header-badge {
+          background: $primary-color;
+          color: white;
+          border-radius: 12px;
+          padding: 2px 8px;
+          font-size: 12px;
+          font-weight: 600;
+          min-width: 20px;
+          text-align: center;
+        }
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .expand-icon {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease;
+
+          &.rotated {
+            transform: rotate(180deg);
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+            fill: #666;
+          }
+        }
+      }
+
+      .header-ripple {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle, rgba($primary-color, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s ease;
+      }
+
+      &:active .header-ripple {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .accordion-content {
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: white;
+
+      .content-inner {
+        padding: 0 20px 20px 20px;
+        color: #666;
+        line-height: 1.6;
+      }
+    }
+
+    // Variant styles
+    &[data-variant="card"] {
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+      &:first-child,
+      &:last-child {
+        border-radius: 8px;
+      }
+
+      &.expanded {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+    }
+
+    &[data-variant="minimal"] {
+      border: none;
+      border-bottom: 1px solid #e0e0e0;
+      border-radius: 0;
+
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .accordion-header {
+        background: transparent;
+        padding: 12px 0;
+
+        &:hover {
+          background: rgba($primary-color, 0.05);
+        }
+      }
+
+      .accordion-content .content-inner {
+        padding: 0 0 12px 0;
+      }
+    }
+
+    &[data-variant="bordered"] {
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 8px;
+
+      &.expanded {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  // Size variants
+  &[data-size="small"] {
+    .accordion-item .accordion-header {
+      padding: 12px 16px;
+      
+      .header-content .header-title {
+        font-size: 14px;
+      }
+    }
+    
+    .accordion-content .content-inner {
+      padding: 0 16px 16px 16px;
+      font-size: 14px;
+    }
+  }
+
+  &[data-size="large"] {
+    .accordion-item .accordion-header {
+      padding: 20px 24px;
+      
+      .header-content .header-title {
+        font-size: 18px;
+      }
+    }
+    
+    .accordion-content .content-inner {
+      padding: 0 24px 24px 24px;
+      font-size: 16px;
+    }
+  }
+
+  // Color variants
+  &[data-color="primary"] {
+    .accordion-item {
+      &.expanded .accordion-header {
+        background: rgba($primary-color, 0.05);
+        border-color: $primary-color;
+      }
+      
+      .header-content .header-icon {
+        color: $primary-color;
+      }
+      
+      .header-badge {
+        background: $primary-color;
+      }
+    }
+  }
+
+  &[data-color="secondary"] {
+    .accordion-item {
+      &.expanded .accordion-header {
+        background: rgba($secondary-color, 0.05);
+        border-color: $secondary-color;
+      }
+      
+      .header-content .header-icon {
+        color: $secondary-color;
+      }
+      
+      .header-badge {
+        background: $secondary-color;
+      }
+    }
+  }
+
+  // Flush variant (no borders)
+  &[data-variant="flush"] {
+    .accordion-item {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #e0e0e0;
+
+      &:first-child,
+      &:last-child {
+        border-radius: 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .accordion-header {
+        background: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+// Animation classes
+.accordion-enter {
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion-enter-active {
+  max-height: 500px;
+  opacity: 1;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.accordion-leave {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.accordion-leave-active {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}

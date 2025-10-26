@@ -1,0 +1,14 @@
+<div class="advanced-chart-container"
+     [style.width.px]="width"
+     [style.height.px]="height">
+  
+  <canvas #canvas 
+          class="chart-canvas"
+          [style.cursor]="mergedConfig.interactive ? 'pointer' : 'default'">
+  </canvas>
+
+  <div #tooltip 
+       class="chart-tooltip"
+       style="display: none;">
+  </div>
+</div>

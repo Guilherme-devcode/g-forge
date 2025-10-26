@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '../../../styles/variables';
 
 .gforge-checkbox {
   display: inline-flex;
@@ -120,16 +120,16 @@
   }
 
   // Hover states
-  &:hover:not(&--disabled) {
-    &.gforge-checkbox--primary &__checkmark {
+  &:hover:not(.gforge-checkbox--disabled) {
+    &.gforge-checkbox--primary .gforge-checkbox__checkmark {
       border-color: $primary-color;
     }
 
-    &.gforge-checkbox--secondary &__checkmark {
+    &.gforge-checkbox--secondary .gforge-checkbox__checkmark {
       border-color: $secondary-color;
     }
 
-    &.gforge-checkbox--danger &__checkmark {
+    &.gforge-checkbox--danger .gforge-checkbox__checkmark {
       border-color: $danger-color;
     }
   }

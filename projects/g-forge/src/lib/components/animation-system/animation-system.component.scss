@@ -1,0 +1,38 @@
+.animation-container {
+  display: block;
+  transform-origin: center;
+  backface-visibility: hidden;
+  
+  &.animation-running {
+    pointer-events: auto;
+  }
+  
+  &.animation-paused {
+    animation-play-state: paused;
+  }
+}
+
+// Utility classes for common animation states
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-hover {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Performance optimizations
+.animation-container * {
+  will-change: transform, opacity;
+}

@@ -1,0 +1,264 @@
+@import '../../../styles/variables';
+
+.card-3d-container {
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+
+  &.shadow {
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+  }
+
+  .card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  .holographic-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 0, 150, 0.3) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 30%,
+      rgba(0, 255, 255, 0.3) 50%,
+      transparent 70%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 0, 0.2) 0%,
+      rgba(255, 0, 255, 0.2) 25%,
+      rgba(0, 255, 255, 0.2) 50%,
+      rgba(0, 255, 0, 0.2) 75%,
+      rgba(255, 255, 0, 0.2) 100%
+    );
+    background-size: 200% 200%, 200% 200%, 100% 100%;
+    animation: holographic 3s ease-in-out infinite;
+    border-radius: inherit;
+    z-index: 2;
+  }
+
+  .metallic-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      #c0c0c0 0%,
+      #e8e8e8 25%,
+      #a0a0a0 50%,
+      #d0d0d0 75%,
+      #b0b0b0 100%
+    );
+    background-size: 400% 400%;
+    animation: metallic 4s ease-in-out infinite;
+    border-radius: inherit;
+    z-index: 2;
+  }
+
+  .neon-layer {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+    background-size: 400% 400%;
+    animation: neon 3s ease-in-out infinite;
+    border-radius: inherit;
+    z-index: 0;
+    filter: blur(2px);
+  }
+
+  .glass-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: inherit;
+    z-index: 2;
+  }
+
+  .glare-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    border-radius: inherit;
+    z-index: 3;
+    pointer-events: none;
+    transition: background 0.3s ease;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 4;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+
+  .reflection-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border-radius: inherit;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  // Variant styles
+  &[data-variant="default"] {
+    .card-background {
+      background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    }
+  }
+
+  &[data-variant="holographic"] {
+    .card-background {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+  }
+
+  &[data-variant="metallic"] {
+    .card-background {
+      background: #2c2c2c;
+    }
+    .card-content {
+      color: #333;
+    }
+  }
+
+  &[data-variant="neon"] {
+    .card-background {
+      background: #000;
+    }
+    .card-content {
+      color: #fff;
+      text-shadow: 0 0 10px currentColor;
+    }
+  }
+
+  &[data-variant="glass"] {
+    .card-background {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .card-content {
+      color: #333;
+    }
+  }
+
+  // Hover effects
+  &:hover {
+    .holographic-layer {
+      animation-duration: 1s;
+    }
+    
+    .metallic-layer {
+      animation-duration: 2s;
+    }
+    
+    .neon-layer {
+      animation-duration: 1.5s;
+    }
+    
+    .reflection-effect {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+    }
+  }
+}
+
+// Animations
+@keyframes holographic {
+  0%, 100% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+    opacity: 0.8;
+  }
+  25% {
+    background-position: 100% 100%, 0% 0%, 25% 0%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 100%, 100% 100%, 50% 0%;
+    opacity: 0.9;
+  }
+  75% {
+    background-position: 0% 0%, 100% 100%, 75% 0%;
+    opacity: 1;
+  }
+}
+
+@keyframes metallic {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes neon {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 0.8;
+  }
+  25% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 100%;
+    opacity: 0.9;
+  }
+  75% {
+    background-position: 0% 100%;
+    opacity: 1;
+  }
+}
