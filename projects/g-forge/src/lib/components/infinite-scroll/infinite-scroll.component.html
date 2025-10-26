@@ -1,0 +1,44 @@
+<div #scrollContainer 
+     class="infinite-scroll-container"
+     [class.horizontal]="direction === 'horizontal'"
+     [class.disabled]="disabled">
+  
+  <!-- Content -->
+  <div class="scroll-content">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Sentinel element for intersection observer -->
+  <div #sentinel class="scroll-sentinel"></div>
+
+  <!-- Loading state -->
+  <div *ngIf="loading && hasMore" class="scroll-state loading-state">
+    <div *ngIf="showLoadingSpinner" class="loading-spinner">
+      <div class="spinner-ring"></div>
+    </div>
+    <span class="state-text">{{ loadingText }}</span>
+  </div>
+
+  <!-- No more items state -->
+  <div *ngIf="!hasMore && !loading && !hasError" class="scroll-state no-more-state">
+    <div class="no-more-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+      </svg>
+    </div>
+    <span class="state-text">{{ noMoreText }}</span>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="hasError" class="scroll-state error-state">
+    <div class="error-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+      </svg>
+    </div>
+    <span class="state-text">{{ errorText }}</span>
+    <button class="retry-button" (click)="onRetry()">
+      {{ retryText }}
+    </button>
+  </div>
+</div>

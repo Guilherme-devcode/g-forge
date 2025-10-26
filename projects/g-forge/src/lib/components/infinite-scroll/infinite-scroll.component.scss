@@ -1,0 +1,212 @@
+@import '../../../styles/variables';
+
+.infinite-scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+
+  &.horizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    .scroll-content {
+      display: inline-flex;
+      align-items: flex-start;
+    }
+
+    .scroll-state {
+      display: inline-flex;
+      min-width: 200px;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .scroll-content {
+    width: 100%;
+  }
+
+  .scroll-sentinel {
+    width: 100%;
+    height: 1px;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .scroll-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    gap: 12px;
+
+    .state-text {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    &.loading-state {
+      .loading-spinner {
+        width: 32px;
+        height: 32px;
+        position: relative;
+
+        .spinner-ring {
+          width: 100%;
+          height: 100%;
+          border: 3px solid rgba($primary-color, 0.2);
+          border-top: 3px solid $primary-color;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+
+      .state-text {
+        color: $primary-color;
+      }
+    }
+
+    &.no-more-state {
+      .no-more-icon {
+        width: 24px;
+        height: 24px;
+        color: $success-color;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: currentColor;
+        }
+      }
+
+      .state-text {
+        color: $success-color;
+      }
+    }
+
+    &.error-state {
+      .error-icon {
+        width: 24px;
+        height: 24px;
+        color: $danger-color;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: currentColor;
+        }
+      }
+
+      .state-text {
+        color: $danger-color;
+      }
+
+      .retry-button {
+        background: $danger-color;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: darken($danger-color, 10%);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  // Scrollbar styling
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #a1a1a1;
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Custom animations for content loading
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.infinite-scroll-container ::ng-deep .scroll-item {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .infinite-scroll-container {
+    .scroll-state {
+      padding: 16px;
+      
+      .state-text {
+        font-size: 13px;
+      }
+
+      &.loading-state .loading-spinner {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+}

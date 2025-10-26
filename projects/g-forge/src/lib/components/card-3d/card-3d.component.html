@@ -1,0 +1,40 @@
+<div class="card-3d-container" 
+     [style.width.px]="width"
+     [style.height.px]="height"
+     [style.perspective.px]="perspective">
+  
+  <div #card 
+       class="card-3d"
+       [class.shadow]="shadow"
+       [attr.data-variant]="variant"
+       [style.border-radius.px]="borderRadius"
+       [style.width.px]="width"
+       [style.height.px]="height">
+    
+    <!-- Background layers for effects -->
+    <div class="card-background"></div>
+    
+    <!-- Holographic effect -->
+    <div class="holographic-layer" *ngIf="variant === 'holographic'"></div>
+    
+    <!-- Metallic effect -->
+    <div class="metallic-layer" *ngIf="variant === 'metallic'"></div>
+    
+    <!-- Neon effect -->
+    <div class="neon-layer" *ngIf="variant === 'neon'"></div>
+    
+    <!-- Glass effect -->
+    <div class="glass-layer" *ngIf="variant === 'glass'"></div>
+    
+    <!-- Glare effect -->
+    <div #glare class="glare-effect"></div>
+    
+    <!-- Content -->
+    <div class="card-content">
+      <ng-content></ng-content>
+    </div>
+    
+    <!-- Reflection effect -->
+    <div class="reflection-effect"></div>
+  </div>
+</div>

@@ -49,6 +49,8 @@ export interface DataGridConfig {
   styleUrls: ['./data-grid.component.scss'],
 })
 export class DataGridComponent implements OnInit, OnChanges {
+  Math = Math;
+  
   /** Dados da tabela */
   @Input() data: any[] = [];
 

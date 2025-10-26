@@ -1,0 +1,47 @@
+@import '../../../styles/variables';
+
+.advanced-chart-container {
+  position: relative;
+  display: inline-block;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+
+  .chart-canvas {
+    display: block;
+    background: white;
+  }
+
+  .chart-tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+    .tooltip-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: $primary-color;
+    }
+
+    .tooltip-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+
+      .tooltip-label {
+        opacity: 0.8;
+      }
+
+      .tooltip-value {
+        font-weight: 600;
+      }
+    }
+  }
+}
